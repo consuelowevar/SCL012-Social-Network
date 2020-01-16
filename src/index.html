@@ -7,6 +7,34 @@
   <title>Document</title>
 </head>
 <body>
+  <h1>Hola mundo</h1>
+  <input type="email" id="email" placeholder="Email">
+  <input type="password" id="password" placeholder="Contraseña">
+  <button id="send">Enviar</button>
+  
   <script type="module" src="main.js"></script>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-auth.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyBqerhWyJmwk6Xs4WCsxoAHgf_rOScPtS4",
+    authDomain: "red-social-94f04.firebaseapp.com",
+    databaseURL: "https://red-social-94f04.firebaseio.com",
+    projectId: "red-social-94f04",
+    storageBucket: "red-social-94f04.appspot.com",
+    messagingSenderId: "128282217223",
+    appId: "1:128282217223:web:5ba4bcdb5ad24e5eedd3a2"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+  </body>
 </body>
 </html>

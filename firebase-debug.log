@@ -1,0 +1,29 @@
+[debug] [2020-01-15T19:20:31.487Z] ----------------------------------------------------------------------
+[debug] [2020-01-15T19:20:31.491Z] Command:       /usr/local/bin/firebase /Users/barbara/.cache/firebase/tools/lib/node_modules/firebase-tools/lib/bin/firebase serve
+[debug] [2020-01-15T19:20:31.491Z] CLI Version:   7.12.0
+[debug] [2020-01-15T19:20:31.491Z] Platform:      darwin
+[debug] [2020-01-15T19:20:31.491Z] Node Version:  v12.13.1
+[debug] [2020-01-15T19:20:31.497Z] Time:          Wed Jan 15 2020 16:20:31 GMT-0300 (Chile Summer Time)
+[debug] [2020-01-15T19:20:31.498Z] ----------------------------------------------------------------------
+[debug] [2020-01-15T19:20:31.498Z] 
+[debug] [2020-01-15T19:20:31.514Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-01-15T19:20:31.514Z] > authorizing via signed-in user
+[debug] [2020-01-15T19:20:31.514Z] [iam] checking project red-social-94f04 for permissions ["firebase.projects.get"]
+[debug] [2020-01-15T19:20:31.516Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2020-01-15T19:20:31.516Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2020-01-15T19:20:31.671Z] <<< HTTP RESPONSE 200
+[debug] [2020-01-15T19:20:31.692Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/red-social-94f04:testIamPermissions  
+
+[debug] [2020-01-15T19:20:32.750Z] <<< HTTP RESPONSE 200
+[debug] [2020-01-15T19:20:32.752Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/red-social-94f04  
+ 
+[debug] [2020-01-15T19:20:33.179Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/barbara/SCL012-Social-Network'...
+[info] 
+[debug] [2020-01-15T19:20:33.184Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/red-social-94f04/webApps/-/config  
+ 
+[debug] [2020-01-15T19:20:33.829Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: src
+[info] ✔  hosting: Local server: http://localhost:5000
