@@ -4,6 +4,7 @@ import { myFunction } from './lib/index.js';
 myFunction();
 
 
+// Crear y Registrar usuario con Firebase
 const sendButton = document.getElementById('send');
 
 sendButton.addEventListener('click', () => {
@@ -24,6 +25,7 @@ sendButton.addEventListener('click', () => {
     });
 });
 
+// Loggear usuario con Firebase
 const sendButtonLogIn = document.getElementById('sendLogIn');
 
 sendButtonLogIn.addEventListener('click', () => {
@@ -41,6 +43,7 @@ sendButtonLogIn.addEventListener('click', () => {
     });
 });
 
+// Observador que te dice si hay usuario logueado o no
 function observerAuth() {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
@@ -66,7 +69,7 @@ function observerAuth() {
 
 observerAuth();
 
-
+// Función para generar el contenido luego del Log in.
 function afterLogIn(user) {
   const contentPage = document.getElementById('contentPage');
   if (user.emailVerified) {
@@ -85,11 +88,12 @@ function afterLogIn(user) {
         });
       er.preventDefault();
     });
-  } else{
-    console.log('No está verificado')
+  } else {
+    console.log('No está verificado');
   }
 }
 
+// Función que envía el mail de verificación
 function emailVerification() {
   const user = firebase.auth().currentUser;
 
