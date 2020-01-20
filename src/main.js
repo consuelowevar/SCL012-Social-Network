@@ -3,7 +3,6 @@ import { myFunction, closeSession, emailVerification, signInUser, singUpNewUser 
 
 myFunction();
 
-
 const authSection = document.getElementById('authSection'); // Sección de registro
 const contentPage = document.getElementById('contentPage');
 
