@@ -50,7 +50,6 @@ function loadSignUp() {
 
 // Crear y Registrar usuario con Firebase
 const sendButton = () => {
-  debugger;
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
 
@@ -117,20 +116,15 @@ observerAuth();
 function afterLogIn(user) {
   const contentPage = document.getElementById('contentPage');
   if (user.emailVerified) {
+    const buttonClose = document.createElement('button');
+    buttonClose.innerHTML = 'Cerrar Sesión';
+    buttonClose.addEventListener('click', () => {
+      closeSession();
+    })
     contentPage.innerHTML = `
-    <h3>Bienvenido</h3>
-    <button id='closeSession'>Cerrar Sesión</button>`;
-
-    const closeSession = document.querySelector('#closeSession');
-    closeSession.addEventListener('click', () => {
-      firebase.auth().signOut()
-        .then(() => {
-          console.log('Saliendo');
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    });
+    <h3>Bienvenido</h3>`;
+    contentPage.appendChild(buttonClose);
+    };
   } else {
     console.log('No está verificado');
     contentPage.innerHTML = '<p>Verifica tu mail para poder entrar a la aplicación</p>';
@@ -150,4 +144,14 @@ function emailVerification() {
       // An error happened.
       console.log(error);
     });
+}
+
+const closeSession = () => {
+  firebase.auth().signOut()
+        .then(() => {
+          console.log('Saliendo');
+        })
+        .catch((error) => {
+          console.log(error);
+        });
 }
