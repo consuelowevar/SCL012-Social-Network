@@ -3,7 +3,9 @@ import { myFunction } from './lib/index.js';
 
 myFunction();
 
+
 const authSection = document.getElementById('authSection'); // Sección de registro
+const contentPage = document.getElementById('contentPage');
 
 // Función que carga el Sign In
 function loadSignIn() {
@@ -114,20 +116,25 @@ observerAuth();
 
 // Función para generar el contenido luego del Log in.
 function afterLogIn(user) {
-  const contentPage = document.getElementById('contentPage');
   if (user.emailVerified) {
     const buttonClose = document.createElement('button');
     buttonClose.innerHTML = 'Cerrar Sesión';
     buttonClose.addEventListener('click', () => {
       closeSession();
-    })
-    contentPage.innerHTML = `
-    <h3>Bienvenido</h3>`;
+    });
+    contentPage.innerHTML = `<h3>Bienvenido</h3>`;
     contentPage.appendChild(buttonClose);
-    };
+    authSection.innerHTML = '';
   } else {
     console.log('No está verificado');
+    const buttonClose = document.createElement('button');
+    buttonClose.innerHTML = 'Cerrar Sesión';
+    buttonClose.addEventListener('click', () => {
+      closeSession();
+    });
     contentPage.innerHTML = '<p>Verifica tu mail para poder entrar a la aplicación</p>';
+    contentPage.appendChild(buttonClose);
+    authSection.innerHTML = '';
   }
 }
 
@@ -146,10 +153,12 @@ function emailVerification() {
     });
 }
 
+// Función que cierra sesión
 const closeSession = () => {
   firebase.auth().signOut()
         .then(() => {
           console.log('Saliendo');
+          contentPage.innerHTML = '';
         })
         .catch((error) => {
           console.log(error);
