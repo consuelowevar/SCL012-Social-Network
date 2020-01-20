@@ -1,5 +1,5 @@
 // Este es el punto de entrada de tu aplicacion
-import { myFunction } from './lib/index.js';
+import { myFunction, closeSession, emailVerification, signInUser, singUpNewUser } from './lib/index.js';
 
 myFunction();
 
@@ -55,19 +55,7 @@ const sendButton = () => {
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
 
-  firebase.auth().createUserWithEmailAndPassword(email, password)
-    .then((user) => {
-      emailVerification();
-      afterLogIn(user);
-    })
-    .catch((error) => {
-    // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode);
-      console.log(errorMessage);
-    // ...
-    });
+  singUpNewUser(email, password);
 };
 
 
@@ -76,15 +64,7 @@ const sendButtonLogIn = () => {
   const email = document.getElementById('emailLogIn').value;
   const password = document.getElementById('passwordLogIn').value;
 
-  firebase.auth().signInWithEmailAndPassword(email, password)
-    .catch((error) => {
-    // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode);
-      console.log(errorMessage);
-    // ...
-    });
+  signInUser(email, password);
 };
 
 // Observador que te dice si hay usuario logueado o no
@@ -122,7 +102,7 @@ function afterLogIn(user) {
     buttonClose.addEventListener('click', () => {
       closeSession();
     });
-    contentPage.innerHTML = `<h3>Bienvenido</h3>`;
+    contentPage.innerHTML = '<h3>Bienvenido</h3>';
     contentPage.appendChild(buttonClose);
     authSection.innerHTML = '';
   } else {
@@ -136,31 +116,4 @@ function afterLogIn(user) {
     contentPage.appendChild(buttonClose);
     authSection.innerHTML = '';
   }
-}
-
-// Función que envía el mail de verificación
-function emailVerification() {
-  const user = firebase.auth().currentUser;
-
-  user.sendEmailVerification()
-    .then(() => {
-      // Email sent.
-      console.log('Enviando correo...');
-    })
-    .catch((error) => {
-      // An error happened.
-      console.log(error);
-    });
-}
-
-// Función que cierra sesión
-const closeSession = () => {
-  firebase.auth().signOut()
-        .then(() => {
-          console.log('Saliendo');
-          contentPage.innerHTML = '';
-        })
-        .catch((error) => {
-          console.log(error);
-        });
 }
