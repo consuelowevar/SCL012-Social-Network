@@ -40,9 +40,12 @@ function loadSignUp() {
   });
 
   authSection.innerHTML = `
+     <div class="logForm">
       <h1>Sign up</h1>
+      <input type="name" id="nameLogIn" placeholder="Nombre">
       <input type="email" id="email" placeholder="Email">
       <input type="password" id="password" placeholder="Contraseña">
+    </div>    
   `;
   authSection.appendChild(sb);
   authSection.appendChild(toggleToSignIn);
