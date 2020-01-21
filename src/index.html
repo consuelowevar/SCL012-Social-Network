@@ -7,16 +7,23 @@
   <title>Document</title>
 </head>
 <body>
-  <h1>Hola mundo</h1>
+  <h1>Registro de Usuarios</h1>
   <input type="email" id="email" placeholder="Email">
   <input type="password" id="password" placeholder="Contraseña">
   <button id="send">Enviar</button>
   
+
+  <h1 id="postOutPut">Post</h1>
+  <input type="texfield" id="post"/>
+  <button id="saveButton">Save</button>
+  <button id="loadButton">Load</button>
+
   <script type="module" src="main.js"></script>
 
   <!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-firestore.js"></script>
 
 <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
@@ -34,6 +41,7 @@
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
+
 </script>
   </body>
 </body>

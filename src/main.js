@@ -1,5 +1,6 @@
 // Este es el punto de entrada de tu aplicacion
 import { myFunction } from './lib/index.js';
+let database = firebase.firestore();
 
 myFunction();
 
