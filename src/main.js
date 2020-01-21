@@ -8,12 +8,14 @@ import {
 } from './lib/index.js';
 >>>>>>> Revisando cambios nuevos
 
+let database = firebase.firestore();
+
 myFunction();
 
 const authSection = document.getElementById('authSection'); // Sección de registro
 const contentPage = document.getElementById('contentPage');
 
-// Función que carga el Sign In
+// <-----Función que carga el Sign In----->
 function loadSignIn() {
   location.hash = '/SignIn';
   const sbSingIn = document.createElement('button');
@@ -36,13 +38,13 @@ function loadSignIn() {
   contentPage.innerHTML = '';
 }
 
-// Función que carga el Sign Up
+// <-----Función que carga el Sign Up---->
 function loadSignUp() {
   window.location.hash = '/SignUp';
   const sb = document.createElement('button');
   sb.innerText = 'Registrarme';
   sb.addEventListener('click', () => {
-    sendButton();
+    sendButtonSignUp();
   });
   const toggleToSignIn = document.createElement('button');
   toggleToSignIn.innerHTML = 'Ya tengo cuenta';
@@ -60,8 +62,8 @@ function loadSignUp() {
   contentPage.innerHTML = '';
 }
 
-// Crear y Registrar usuario con Firebase
-const sendButton = () => {
+// <-----Crear y Registrar usuario con Firebase----->
+const sendButtonSignUp = () => {
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
 
@@ -69,7 +71,7 @@ const sendButton = () => {
 };
 
 
-// Loggear usuario con Firebase
+// <-----Loggear usuario con Firebase----->
 const sendButtonLogIn = () => {
   const email = document.getElementById('emailLogIn').value;
   const password = document.getElementById('passwordLogIn').value;
@@ -77,7 +79,7 @@ const sendButtonLogIn = () => {
   signInUser(email, password);
 };
 
-// Observador que te dice si hay usuario logueado o no
+// <-----Observador que te dice si hay usuario logueado o no----->
 function observerAuth() {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
@@ -104,7 +106,7 @@ function observerAuth() {
 
 observerAuth();
 
-// Función para generar el contenido luego del Log in.
+// <-----Función para generar el contenido luego del Log in.----->
 function afterLogIn(user) {
   if (user.emailVerified) {
     window.location.hash = '/home';
