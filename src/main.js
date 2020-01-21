@@ -8,6 +8,7 @@ const contentPage = document.getElementById('contentPage');
 
 // Función que carga el Sign In
 function loadSignIn() {
+  location.hash = 'SignIn';
   const sbSingIn = document.createElement('button');
   sbSingIn.innerText = 'Entrar';
   sbSingIn.addEventListener('click', () => {
@@ -25,10 +26,12 @@ function loadSignIn() {
   `;
   authSection.appendChild(sbSingIn);
   authSection.appendChild(toggleToSignUp);
+  contentPage.innerHTML = '';
 }
 
 // Función que carga el Sign Up
 function loadSignUp() {
+  window.location.hash = 'SignUp';
   const sb = document.createElement('button');
   sb.innerText = 'Registrarme';
   sb.addEventListener('click', () => {
@@ -47,6 +50,7 @@ function loadSignUp() {
   `;
   authSection.appendChild(sb);
   authSection.appendChild(toggleToSignIn);
+  contentPage.innerHTML = '';
 }
 
 // Crear y Registrar usuario con Firebase
@@ -96,6 +100,7 @@ observerAuth();
 // Función para generar el contenido luego del Log in.
 function afterLogIn(user) {
   if (user.emailVerified) {
+    window.location.hash = 'home';
     const buttonClose = document.createElement('button');
     buttonClose.innerHTML = 'Cerrar Sesión';
     buttonClose.addEventListener('click', () => {
@@ -105,6 +110,7 @@ function afterLogIn(user) {
     contentPage.appendChild(buttonClose);
     authSection.innerHTML = '';
   } else {
+    window.location.hash = 'NeedVerification';
     console.log('No está verificado');
     const buttonClose = document.createElement('button');
     buttonClose.innerHTML = 'Cerrar Sesión';
@@ -116,3 +122,13 @@ function afterLogIn(user) {
     authSection.innerHTML = '';
   }
 }
+
+window.addEventListener('hashchange', () => {
+  if (window.location.hash === '#SignIn') {
+    loadSignIn();
+  } else if (window.location.hash === '#SignUp') {
+    loadSignUp();
+  } else if (window.location.hash === '#home' || window.location.hash === '#NeedVerification') {
+    observerAuth();
+  }
+});
