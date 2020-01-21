@@ -1,6 +1,12 @@
 // Este es el punto de entrada de tu aplicacion
+<<<<<<< HEAD
 import { myFunction, closeSession, signInUser, singUpNewUser } from './lib/index.js';
 let database = firebase.firestore();
+=======
+import {
+ myFunction, closeSession, signInUser, singUpNewUser 
+} from './lib/index.js';
+>>>>>>> Revisando cambios nuevos
 
 myFunction();
 
@@ -140,15 +146,16 @@ window.addEventListener('hashchange', () => {
 
 const contentPost = document.getElementById('contentPost');
 
-function createPost(){
-  //aquí agregamos el componente de tipo input
-  const input = document.createElement("INPUT");
-  //aquí indicamos que es un input de tipo text
+function createPost() {
+  // aquí agregamos el componente de tipo input
+  const input = document.createElement('INPUT');
+  // aquí indicamos que es un input de tipo text
   input.type = 'text';
-  //y por ultimo agreamos el componente creado al padre
+  // y por ultimo agreamos el componente creado al padre
   contentPost.appendChild(input);
   // creamos botton de envio de post
   const saveButton = document.createElement('button');
+<<<<<<< HEAD
 
   saveButton.innerHTML = 'Save Post'
   saveButton.addEventListener('click', () => {
@@ -159,15 +166,26 @@ function createPost(){
   loadButton.addEventListener('click', () =>{
     sendPost();
   })
+=======
+  saveButton.innerHTML = 'Enviar Post';
+  saveButton.addEventListener('click', () => {
+    save();
+  });
+>>>>>>> Revisando cambios nuevos
   contentPost.appendChild(saveButton);
   contentPost.appendChild(loadButton);
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> Revisando cambios nuevos
 // //  const docRef = firestore.collection("post").doc("postUser");
 // //  const outputHeader = document.querySelector('postOutPut');
 // //  const inputTexField = document.querySelector('post');
 // //  const saveButton = document.querySelector('saveButtond');
 
+<<<<<<< HEAD
 const savePost = () => {
   //const texToSave = inputTexField.value;
   //console.log("I am going to save" + texToSave + " to Firestore");
@@ -175,16 +193,26 @@ const savePost = () => {
     first: "SEGUNDOOO",
     last: "POST",
     born: "WOOOOHOOO"
+=======
+const save = () => {
+  // const texToSave = inputTexField.value;
+  // console.log("I am going to save" + texToSave + " to Firestore");
+  database.collection('post').add({
+    first: 'SEGUNDOOO',
+    last: 'POST',
+    born: 'WOOOOHOOO',
+>>>>>>> Revisando cambios nuevos
   })
-  .then(docRef => {
-    console.log("Document written with ID: ", docRef.id);
-  })
-  .catch(error => {
-    console.error("Error adding document: ", error);
-  });
+    .then((docRef) => {
+      console.log('Document written with ID: ', docRef.id);
+    })
+    .catch((error) => {
+      console.error('Error adding document: ', error);
+    });
 };
 
 
+<<<<<<< HEAD
 const sendPost = () => {
 
 database.collection("post").get()
@@ -202,9 +230,13 @@ database.collection("post").get()
 
 //   docRef.set({
 //     userStatus: texToSave
+=======
+// //   docRef.set({
+// //     userStatus: texToSave
+>>>>>>> Revisando cambios nuevos
 
-//   }).then(function(){
-//     console.log("status saved!");
+// //   }).then(function(){
+// //     console.log("status saved!");
 
 //   }).catch(function (error){
 //     console.log("Got an error", error);
