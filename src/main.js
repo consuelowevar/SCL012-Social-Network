@@ -1,5 +1,6 @@
 // Este es el punto de entrada de tu aplicacion
 import { myFunction, closeSession, emailVerification, signInUser, singUpNewUser } from './lib/index.js';
+let database = firebase.firestore();
 
 myFunction();
 
@@ -132,3 +133,41 @@ window.addEventListener('hashchange', () => {
     observerAuth();
   }
 });
+
+
+// Logica Post
+
+//  const docRef = firestore.collection("post").doc("postUser");
+//  const outputHeader = document.querySelector('postOutPut');
+//  const inputTexField = document.querySelector('post');
+//  const saveButton = document.querySelector('saveButtond');
+
+saveButton.addEventListener('click', () => {
+  //const texToSave = inputTexField.value;
+  //console.log("I am going to save" + texToSave + " to Firestore");
+  database.collection("post").add({
+    first: "SEGUNDOOO",
+    last: "POST",
+    born: "WOOOOHOOO"
+  })
+  .then(docRef => {
+    console.log("Document written with ID: ", docRef.id);
+  })
+  .catch(error => {
+    console.error("Error adding document: ", error);
+  });
+});
+
+
+//   docRef.set({
+//     userStatus: texToSave
+
+//   }).then(function(){
+//     console.log("status saved!");
+
+//   }).catch(function (error){
+//     console.log("Got an error", error);
+//   });
+// })
+
+
