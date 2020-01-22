@@ -8,7 +8,8 @@ const database = firebase.firestore();
 myFunction();
 
 const authSection = document.getElementById('authSection'); // Sección de registro
-const contentPage = document.getElementById('contentPage');
+const contentPage = document.getElementById('contentPage'); // Sección de parte de arriba del home
+const contentPost = document.getElementById('contentPost'); // Sección de los posts
 
 // Función que carga el Sign In
 function loadSignIn() {
@@ -31,6 +32,7 @@ function loadSignIn() {
   authSection.appendChild(sbSingIn);
   authSection.appendChild(toggleToSignUp);
   contentPage.innerHTML = '';
+  contentPost.innerHTML = '';
 }
 
 // Función que carga el Sign Up
@@ -56,6 +58,7 @@ function loadSignUp() {
   authSection.appendChild(sb);
   authSection.appendChild(toggleToSignIn);
   contentPage.innerHTML = '';
+  contentPost.innerHTML = '';
 }
 
 // Crear y Registrar usuario con Firebase
@@ -100,11 +103,10 @@ function observerAuth() {
     }
   });
 }
-
 observerAuth();
 
 // Función para generar el contenido luego del Log in.
-function afterLogIn(user) {
+const afterLogIn = (user) => {
   if (user.emailVerified) {
     window.location.hash = '/home';
     const buttonClose = document.createElement('button');
@@ -115,6 +117,7 @@ function afterLogIn(user) {
     contentPage.innerHTML = '<h3>Bienvenido</h3>';
     contentPage.appendChild(buttonClose);
     authSection.innerHTML = '';
+    contentPost.innerHTML = '';
     createPost();
   } else {
     window.location.hash = '/NeedVerification';
@@ -128,22 +131,21 @@ function afterLogIn(user) {
     contentPage.appendChild(buttonClose);
     authSection.innerHTML = '';
   }
-}
+};
 
+// El Routing
 window.addEventListener('hashchange', () => {
   if (window.location.hash === '#/SignIn') {
     loadSignIn();
   } else if (window.location.hash === '#/SignUp') {
     loadSignUp();
   } else if (window.location.hash === '#/home' || window.location.hash === '#/NeedVerification') {
-    observerAuth();
+    afterLogIn(user);
   }
 });
 
 
 // Logica Post
-
-const contentPost = document.getElementById('contentPost');
 
 const createPost = () => {
   // aquí agregamos el componente de tipo input
@@ -157,31 +159,30 @@ const createPost = () => {
 
   saveButton.innerHTML = 'Save Post';
   saveButton.addEventListener('click', () => {
-    savePost();
+    const textToSave = input.value;
+    console.log(textToSave);
+    savePost(textToSave);
   });
   const loadButton = document.createElement('button');
   loadButton.innerHTML = 'Load Post';
   loadButton.addEventListener('click', () => {
-    sendPost();
+    const textToSave = input.value;
+    console.log(textToSave);
+    sendPost(textToSave);
   });
   contentPost.appendChild(saveButton);
   contentPost.appendChild(loadButton);
 };
 
-// //  const docRef = firestore.collection("post").doc("postUser");
-// //  const outputHeader = document.querySelector('postOutPut');
-// //  const inputTexField = document.querySelector('post');
-// //  const saveButton = document.querySelector('saveButtond');
 
-const savePost = () => {
-  // const texToSave = inputTexField.value;
-  // console.log("I am going to save" + texToSave + " to Firestore");
+const savePost = (textPost) => {
+  const texToSave = textPost;
+  console.log(`I am going to save ${  texToSave  } to Firestore`);
   database.collection('post').add({
-    first: 'SEGUNDOOO',
-    last: 'POST',
-    born: 'WOOOOHOOO',
+    POST: texToSave,
   })
     .then((docRef) => {
+      console.log('Status Saved!');
       console.log('Document written with ID: ', docRef.id);
     })
     .catch((error) => {
@@ -190,27 +191,17 @@ const savePost = () => {
 };
 
 
-const sendPost = () => {
+const sendPost = (textPost) => {
+  const texToSave = textPost;
+  console.log(`I am going to save ${  texToSave  } to Firestore`);
+
   database.collection('post').get()
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id, ' => ', doc.data());
+        console.log(doc.id, " => ", doc.data());
       });
     })
     .catch((error) => {
       console.log('Error getting documents: ', error);
     });
 };
-
-
-//   docRef.set({
-//     userStatus: texToSave
-
-// //   }).then(function(){
-// //     console.log("status saved!");
-
-//   }).catch(function (error){
-//     console.log("Got an error", error);
-//   });
-// })
