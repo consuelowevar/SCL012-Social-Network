@@ -46,14 +46,18 @@ const signInUser = (email, password) => {
 
 const singUpNewUser = (email, password) => {
   firebase.auth().createUserWithEmailAndPassword(email, password)
-    .then((user) => {
+    .then(() => {
       emailVerification();
-      afterLogIn(user);
     })
     .catch((error) => {
     // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
+      if (errorCode == 'auth/weak-password') {
+        alert('The password is too weak.');
+      } else {
+        alert(errorMessage);
+      }
       console.log(errorCode);
       console.log(errorMessage);
     // ...

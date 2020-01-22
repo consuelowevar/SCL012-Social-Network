@@ -1,23 +1,18 @@
 // Este es el punto de entrada de tu aplicacion
-<<<<<<< HEAD
-import { myFunction, closeSession, signInUser, singUpNewUser } from './lib/index.js';
-let database = firebase.firestore();
-=======
 import {
- myFunction, closeSession, signInUser, singUpNewUser 
+  myFunction, closeSession, signInUser, singUpNewUser,
 } from './lib/index.js';
->>>>>>> Revisando cambios nuevos
 
-let database = firebase.firestore();
+const database = firebase.firestore();
 
 myFunction();
 
 const authSection = document.getElementById('authSection'); // Sección de registro
 const contentPage = document.getElementById('contentPage');
 
-// <-----Función que carga el Sign In----->
+// Función que carga el Sign In
 function loadSignIn() {
-  location.hash = '/SignIn';
+  window.location.hash = '/SignIn';
   const sbSingIn = document.createElement('button');
   sbSingIn.innerText = 'Entrar';
   sbSingIn.addEventListener('click', () => {
@@ -38,13 +33,13 @@ function loadSignIn() {
   contentPage.innerHTML = '';
 }
 
-// <-----Función que carga el Sign Up---->
+// Función que carga el Sign Up
 function loadSignUp() {
   window.location.hash = '/SignUp';
   const sb = document.createElement('button');
   sb.innerText = 'Registrarme';
   sb.addEventListener('click', () => {
-    sendButtonSignUp();
+    sendButton();
   });
   const toggleToSignIn = document.createElement('button');
   toggleToSignIn.innerHTML = 'Ya tengo cuenta';
@@ -54,6 +49,7 @@ function loadSignUp() {
 
   authSection.innerHTML = `
       <h1>Sign up</h1>
+      <input type="text" id="name" placeholder="Nombre">
       <input type="email" id="email" placeholder="Email">
       <input type="password" id="password" placeholder="Contraseña">
   `;
@@ -62,16 +58,17 @@ function loadSignUp() {
   contentPage.innerHTML = '';
 }
 
-// <-----Crear y Registrar usuario con Firebase----->
-const sendButtonSignUp = () => {
+// Crear y Registrar usuario con Firebase
+const sendButton = () => {
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
+  const name = document.getElementById('name').value;
 
   singUpNewUser(email, password);
 };
 
 
-// <-----Loggear usuario con Firebase----->
+// Loggear usuario con Firebase
 const sendButtonLogIn = () => {
   const email = document.getElementById('emailLogIn').value;
   const password = document.getElementById('passwordLogIn').value;
@@ -79,7 +76,7 @@ const sendButtonLogIn = () => {
   signInUser(email, password);
 };
 
-// <-----Observador que te dice si hay usuario logueado o no----->
+// Observador que te dice si hay usuario logueado o no
 function observerAuth() {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
@@ -106,7 +103,7 @@ function observerAuth() {
 
 observerAuth();
 
-// <-----Función para generar el contenido luego del Log in.----->
+// Función para generar el contenido luego del Log in.
 function afterLogIn(user) {
   if (user.emailVerified) {
     window.location.hash = '/home';
@@ -148,7 +145,7 @@ window.addEventListener('hashchange', () => {
 
 const contentPost = document.getElementById('contentPost');
 
-function createPost() {
+const createPost = () => {
   // aquí agregamos el componente de tipo input
   const input = document.createElement('INPUT');
   // aquí indicamos que es un input de tipo text
@@ -157,53 +154,32 @@ function createPost() {
   contentPost.appendChild(input);
   // creamos botton de envio de post
   const saveButton = document.createElement('button');
-<<<<<<< HEAD
 
-  saveButton.innerHTML = 'Save Post'
+  saveButton.innerHTML = 'Save Post';
   saveButton.addEventListener('click', () => {
     savePost();
-  })
-  const loadButton = document.createElement('button');
-  loadButton.innerHTML = 'Load Post'
-  loadButton.addEventListener('click', () =>{
-    sendPost();
-  })
-=======
-  saveButton.innerHTML = 'Enviar Post';
-  saveButton.addEventListener('click', () => {
-    save();
   });
->>>>>>> Revisando cambios nuevos
+  const loadButton = document.createElement('button');
+  loadButton.innerHTML = 'Load Post';
+  loadButton.addEventListener('click', () => {
+    sendPost();
+  });
   contentPost.appendChild(saveButton);
   contentPost.appendChild(loadButton);
-}
+};
 
-<<<<<<< HEAD
-=======
-
->>>>>>> Revisando cambios nuevos
 // //  const docRef = firestore.collection("post").doc("postUser");
 // //  const outputHeader = document.querySelector('postOutPut');
 // //  const inputTexField = document.querySelector('post');
 // //  const saveButton = document.querySelector('saveButtond');
 
-<<<<<<< HEAD
 const savePost = () => {
-  //const texToSave = inputTexField.value;
-  //console.log("I am going to save" + texToSave + " to Firestore");
-  database.collection("post").add({
-    first: "SEGUNDOOO",
-    last: "POST",
-    born: "WOOOOHOOO"
-=======
-const save = () => {
   // const texToSave = inputTexField.value;
   // console.log("I am going to save" + texToSave + " to Firestore");
   database.collection('post').add({
     first: 'SEGUNDOOO',
     last: 'POST',
     born: 'WOOOOHOOO',
->>>>>>> Revisando cambios nuevos
   })
     .then((docRef) => {
       console.log('Document written with ID: ', docRef.id);
@@ -214,28 +190,22 @@ const save = () => {
 };
 
 
-<<<<<<< HEAD
 const sendPost = () => {
-
-database.collection("post").get()
-    .then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
-            // doc.data() is never undefined for query doc snapshots
-            console.log(doc.id, " => ", doc.data());
-        });
+  database.collection('post').get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        console.log(doc.id, ' => ', doc.data());
+      });
     })
-    .catch(function(error) {
-        console.log("Error getting documents: ", error);
+    .catch((error) => {
+      console.log('Error getting documents: ', error);
     });
-}
+};
 
 
 //   docRef.set({
 //     userStatus: texToSave
-=======
-// //   docRef.set({
-// //     userStatus: texToSave
->>>>>>> Revisando cambios nuevos
 
 // //   }).then(function(){
 // //     console.log("status saved!");
