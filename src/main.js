@@ -9,78 +9,6 @@ const database = firebase.firestore();
 myFunction();
 
 const authSection = document.getElementById('authSection'); // Sección de registro
-
-
-// Función que carga el Sign In
-function loadSignIn() {
-  const sbSingIn = document.createElement('button');
-  sbSingIn.innerText = 'Entrar';
-  sbSingIn.addEventListener('click', () => {
-    sendButtonLogIn();
-  });
-  const toggleToSignUp = document.createElement('button');
-  toggleToSignUp.innerHTML = 'No tengo cuenta';
-  toggleToSignUp.addEventListener('click', () => {
-    loadSignUp();
-  });
-  authSection.innerHTML = `
-    <h1>Log in</h1>
-    <input type="email" id="emailLogIn" placeholder="Email">
-    <input type="password" id="passwordLogIn" placeholder="Contraseña">
-  `;
-  authSection.appendChild(sbSingIn);
-  authSection.appendChild(toggleToSignUp);
-}
-
-// Función que carga el Sign Up
-function loadSignUp() {
-  const sb = document.createElement('button');
-  sb.innerText = 'Registrarme';
-  sb.addEventListener('click', () => {
-    sendButton();
-  });
-  const toggleToSignIn = document.createElement('button');
-  toggleToSignIn.innerHTML = 'Ya tengo cuenta';
-  toggleToSignIn.addEventListener('click', () => {
-    loadSignIn();
-  });
-
-  authSection.innerHTML = `
-     <div class="logForm">
-      <h1>Sign up</h1>
-      <input type="name" id="nameLogIn" placeholder="Nombre">
-      <input type="email" id="email" placeholder="Email">
-      <input type="password" id="password" placeholder="Contraseña">
-    </div>    
-  `;
-  authSection.appendChild(sb);
-  authSection.appendChild(toggleToSignIn);
-}
-
-// Crear y Registrar usuario con Firebase
-const sendButton = () => {
-  debugger;
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
-
-  firebase.auth().createUserWithEmailAndPassword(email, password)
-    .then((user) => {
-      emailVerification();
-      afterLogIn(user);
-    })
-    .catch((error) => {
-    // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode);
-      console.log(errorMessage);
-    // ...
-    });
-};
-
-
-// Loggear usuario con Firebase
-
 const contentPage = document.getElementById('contentPage'); // Sección de parte de arriba del home
 const contentPost = document.getElementById('contentPost'); // Sección de los posts
 
@@ -191,27 +119,11 @@ const sendButtonLogIn = () => {
   const email = document.getElementById('emailLogIn').value;
   const password = document.getElementById('passwordLogIn').value;
 
-
-  firebase.auth().signInWithEmailAndPassword(email, password)
-    .catch((error) => {
-    // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode);
-      console.log(errorMessage);
-    // ...
-    });
-};
-
-// Observador que te dice si hay usuario logueado o no
-function observerAuth() {
-
   signInUser(email, password);
 };
 
-// <------Observador que te dice si hay usuario logueado o no------>
+// Observador que te dice si hay usuario logueado o no
 const observerAuth = () => {
-
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       console.log('Existe usuario activo');
@@ -233,9 +145,7 @@ const observerAuth = () => {
       // ...
     }
   });
-
-}
-
+};
 observerAuth();
 
 // Función para generar el contenido luego del Log in.
@@ -386,10 +296,8 @@ const sendPost = (textPost) => {
     });
 };
 
-
 // function deletePost(id){
 //   database.collection("post").doc(id).delete().then(function() {
 //       console.log
 //   }
 // }
-
