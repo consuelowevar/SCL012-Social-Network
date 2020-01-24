@@ -3,7 +3,7 @@ body{
     font-family: 'Roboto', sans-serif;
 }
 
-@media screen  and (max-width: 560px) {
+ @media screen  and (max-width: 560px) { 
 
   .registerForm {
       display:flex;
@@ -42,8 +42,9 @@ body{
     /* border: 2px solid #0099CC; */
     border:none;
     border-radius: 5px;
-}
-}
+    }
+
+} 
   
   /* width: 100%;
   border: 0;

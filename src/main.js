@@ -195,7 +195,6 @@ function emailVerification() {
     });
 };
 
-};
 
 observerAuth();
 
