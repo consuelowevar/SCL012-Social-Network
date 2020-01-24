@@ -1,6 +1,6 @@
 // Este es el punto de entrada de tu aplicacion
 import {
-  myFunction, closeSession, signInUser, singUpNewUser, signUpGoogle,
+  myFunction, closeSession, signInUser, singUpNewUser, signUpGoogle, forgotPassword,
 } from './lib/index.js';
 
 const database = firebase.firestore();
@@ -12,8 +12,9 @@ const authSection = document.getElementById('authSection'); // Sección de regis
 const contentPage = document.getElementById('contentPage'); // Sección de parte de arriba del home
 const contentPost = document.getElementById('contentPost'); // Sección de los posts
 
-// Función que carga el Sign In
-function loadSignIn() {
+
+// <------Función que carga el Sign In------>
+const loadSignIn = () => {
   window.location.hash = '/SignIn'; // Le asigno el Hash a la página
   // Botón de entrar
   const sbSingIn = document.createElement('button');
@@ -29,9 +30,15 @@ function loadSignIn() {
   });
   // Botón de entrar con Google
   const buttonGoogle = document.createElement('button');
-  buttonGoogle.innerHTML = `Ingresa con Google`;
+  buttonGoogle.innerHTML = 'Ingresa con Google';
   buttonGoogle.addEventListener('click', () => {
     signUpGoogle();
+  });
+  // Link de olvidé contraseña
+  const linkToForgot = document.createElement('span');
+  linkToForgot.innerHTML = `Olvidé mi contraseña`;
+  linkToForgot.addEventListener('click', () => {
+    generateForgot();
   });
   authSection.innerHTML = `
     <h1>Log in</h1>
@@ -39,14 +46,33 @@ function loadSignIn() {
     <input type="password" id="passwordLogIn" placeholder="Contraseña">
   `;
   authSection.appendChild(sbSingIn);
+  authSection.appendChild(linkToForgot);
   authSection.appendChild(buttonGoogle);
   authSection.appendChild(toggleToSignUp);
   contentPage.innerHTML = '';
   contentPost.innerHTML = '';
-}
+};
 
-// Función que carga el Sign Up
-function loadSignUp() {
+// <-----Función de Olvidé mi Contraseña----->
+const generateForgot = () => {
+  window.location.hash = '/forgot';
+  const inputEmail = document.createElement('input');
+  inputEmail.placeholder = 'Tu email';
+  const buttonForgot = document.createElement('button');
+  buttonForgot.innerHTML = 'Recuperar contraseña';
+  
+  buttonForgot.addEventListener('click', () => {
+    forgotPassword(inputEmail.value);
+  });
+  contentPage.innerHTML = '';
+  contentPost.innerHTML = '';
+  authSection.innerHTML = '';
+  authSection.appendChild(inputEmail);
+  authSection.appendChild(buttonForgot);
+};
+
+// <------Función que carga el Sign Up------>
+const loadSignUp = () => {
   window.location.hash = '/SignUp';
   const sb = document.createElement('button');
   sb.innerText = 'Registrarme';
@@ -59,7 +85,7 @@ function loadSignUp() {
     loadSignIn();
   });
   const buttonGoogle = document.createElement('button');
-  buttonGoogle.innerHTML = `Ingresa con Google`;
+  buttonGoogle.innerHTML = 'Ingresa con Google';
   buttonGoogle.addEventListener('click', () => {
     signUpGoogle();
   });
@@ -75,19 +101,19 @@ function loadSignUp() {
   authSection.appendChild(toggleToSignIn);
   contentPage.innerHTML = '';
   contentPost.innerHTML = '';
-}
+};
 
-// Crear y Registrar usuario con Firebase
+// <------Crear y Registrar usuario con Firebase------>
 const sendButton = () => {
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
   const name = document.getElementById('name').value;
 
-  singUpNewUser(email, password);
+  singUpNewUser(email, password, name);
 };
 
 
-// Loggear usuario con Firebase
+// <------Loggear usuario con Firebase------>
 const sendButtonLogIn = () => {
   const email = document.getElementById('emailLogIn').value;
   const password = document.getElementById('passwordLogIn').value;
@@ -95,8 +121,8 @@ const sendButtonLogIn = () => {
   signInUser(email, password);
 };
 
-// Observador que te dice si hay usuario logueado o no
-function observerAuth() {
+// <------Observador que te dice si hay usuario logueado o no------>
+const observerAuth = () => {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       console.log('Existe usuario activo');
@@ -118,12 +144,13 @@ function observerAuth() {
       // ...
     }
   });
-}
+};
 observerAuth();
 
-// Función para generar el contenido luego del Log in.
+// <------Función para generar el contenido luego del Log in------>
 const afterLogIn = (user) => {
   if (user.emailVerified) {
+    window.location.hash = '/home';
     const buttonClose = document.createElement('button');
     buttonClose.innerHTML = 'Cerrar Sesión';
     buttonClose.addEventListener('click', () => {
@@ -134,7 +161,6 @@ const afterLogIn = (user) => {
     authSection.innerHTML = '';
     contentPost.innerHTML = '';
     createPost();
-    window.location.hash = '/home';
   } else {
     window.location.hash = '/NeedVerification';
     console.log('No está verificado');
@@ -149,19 +175,23 @@ const afterLogIn = (user) => {
   }
 };
 
-// El Routing
+
+// <-----El Routing----->
 window.addEventListener('hashchange', () => {
   if (window.location.hash === '#/SignIn') {
     loadSignIn();
   } else if (window.location.hash === '#/SignUp') {
     loadSignUp();
   } else if (window.location.hash === '#/home' || window.location.hash === '#/NeedVerification') {
-    observerAuth();
+    const actualUser = firebase.auth().currentUser;
+    afterLogIn(actualUser);
+  } else if (window.location.hash === '#/forgot') {
+    generateForgot();
   }
 });
 
 
-// Logica Post
+// <-----Logica Post------>
 
 const createPost = () => {
   // aquí agregamos el componente de tipo input
@@ -178,25 +208,24 @@ const createPost = () => {
     console.log(textToSave);
     savePost(textToSave);
     sendPost(textToSave);
-  })
- 
+  });
+
   contentPost.appendChild(saveButton);
-  
-}
+};
 
 const savePost = (textPost) => {
   const texToSave = textPost;
-  console.log("I am going to save " + texToSave + " to Firestore");
-  database.collection("post").add({
-    POST: texToSave
+  console.log(`I am going to save ${texToSave} to Firestore`);
+  database.collection('post').add({
+    POST: texToSave,
   })
-  .then(docRef => {
-    console.log("Status Saved!");
-    console.log("Document written with ID: ", docRef.id);
-  })
-  .catch(error => {
-    console.error("Error adding document: ", error);
-  });
+    .then((docRef) => {
+      console.log('Status Saved!');
+      console.log('Document written with ID: ', docRef.id);
+    })
+    .catch((error) => {
+      console.error('Error adding document: ', error);
+    });
 };
 
 
@@ -204,31 +233,29 @@ const contentMessage = document.getElementById('contentMessage');
 
 const sendPost = (textPost) => {
   const texToSave = textPost;
-  console.log("I am going to save " + texToSave + " to Firestore");
-  database.collection("post")
-  .onSnapshot((querySnapshot) => {
+  console.log(`I am going to save ${texToSave} to Firestore`);
+  database.collection('post')
+    .onSnapshot((querySnapshot) => {
       contentMessage.innerHTML = '';
       querySnapshot.forEach((doc) => {
-            console.log(doc.id, " => ", doc.data());
-            contentMessage.innerHTML += `
+        console.log(doc.id, ' => ', doc.data());
+        contentMessage.innerHTML += `
             <div>
             <div class="message"> ${doc.data().POST}</div>
             <td> <button class="btnClear"></button>Editar</button>
             <td> <button class="btnClear"></button>Eliminar</button>
             </div>
-            `
-        });
+            `;
+      });
     })
     .catch((error) => {
       console.error('Error adding document: ', error);
     });
-}
+};
+
 
 // function deletePost(id){
 //   database.collection("post").doc(id).delete().then(function() {
 //       console.log
-
 //   }
-
 // }
-
