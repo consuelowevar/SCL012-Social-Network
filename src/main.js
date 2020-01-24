@@ -60,7 +60,6 @@ const generateForgot = () => {
   inputEmail.placeholder = 'Tu email';
   const buttonForgot = document.createElement('button');
   buttonForgot.innerHTML = 'Recuperar contraseña';
-  
   buttonForgot.addEventListener('click', () => {
     forgotPassword(inputEmail.value);
   });
@@ -122,7 +121,7 @@ const sendButtonLogIn = () => {
   signInUser(email, password);
 };
 
-// Observador que te dice si hay usuario logueado o no
+// <-----Observador que te dice si hay usuario logueado o no----->
 const observerAuth = () => {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
@@ -148,49 +147,8 @@ const observerAuth = () => {
 };
 observerAuth();
 
-// Función para generar el contenido luego del Log in.
-function afterLogIn(user) {
-  const contentPage = document.getElementById('contentPage');
-  if (user.emailVerified) {
-    contentPage.innerHTML = `
-    <h3>Bienvenido</h3>
-    <button id='closeSession'>Cerrar Sesión</button>`;
 
-    const closeSession = document.querySelector('#closeSession');
-    closeSession.addEventListener('click', () => {
-      firebase.auth().signOut()
-        .then(() => {
-          console.log('Saliendo');
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    });
-  } else {
-    console.log('No está verificado');
-    contentPage.innerHTML = '<p>Verifica tu mail para poder entrar a la aplicación</p>';
-  }
-}
-
-// Función que envía el mail de verificación
-function emailVerification() {
-  const user = firebase.auth().currentUser;
-
-  user.sendEmailVerification()
-    .then(() => {
-      // Email sent.
-      console.log('Enviando correo...');
-    })
-    .catch((error) => {
-      // An error happened.
-      console.log(error);
-    });
-}
-
-};
-observerAuth();
-
-// <------Función para generar el contenido luego del Log in------>
+// <------Función para generar el contenido luego del Log in/Sign up------>
 const afterLogIn = (user) => {
   if (user.emailVerified) {
     window.location.hash = '/home';
@@ -199,7 +157,7 @@ const afterLogIn = (user) => {
     buttonClose.addEventListener('click', () => {
       closeSession();
     });
-    contentPage.innerHTML = '<h3>Bienvenido</h3>';
+    contentPage.innerHTML = `<h3>Bienvenido</h3>`;
     contentPage.appendChild(buttonClose);
     authSection.innerHTML = '';
     contentPost.innerHTML = '';
