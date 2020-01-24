@@ -62,7 +62,6 @@ const generateForgot = () => {
   inputEmail.placeholder = 'Tu email';
   const buttonForgot = document.createElement('button');
   buttonForgot.innerHTML = 'Recuperar contraseña';
-  
   buttonForgot.addEventListener('click', () => {
     forgotPassword(inputEmail.value);
   });
@@ -130,7 +129,7 @@ const sendButtonLogIn = () => {
   signInUser(email, password);
 };
 
-// Observador que te dice si hay usuario logueado o no
+// <-----Observador que te dice si hay usuario logueado o no----->
 const observerAuth = () => {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
@@ -156,6 +155,7 @@ const observerAuth = () => {
 };
 observerAuth();
 
+<<<<<<< HEAD
 // Función para generar el contenido luego del Log in.
 function afterLogIn(user) {
   const contentPage = document.getElementById('contentPage');
@@ -197,8 +197,10 @@ function emailVerification() {
 
 
 observerAuth();
+=======
+>>>>>>> 2427c20ecb9080b0fc3b7fde499c2e7b7434de49
 
-// <------Función para generar el contenido luego del Log in------>
+// <------Función para generar el contenido luego del Log in/Sign up------>
 const afterLogIn = (user) => {
   if (user.emailVerified) {
     window.location.hash = '/home';
@@ -207,7 +209,7 @@ const afterLogIn = (user) => {
     buttonClose.addEventListener('click', () => {
       closeSession();
     });
-    contentPage.innerHTML = '<h3>Bienvenido</h3>';
+    contentPage.innerHTML = `<h3>Bienvenido</h3>`;
     contentPage.appendChild(buttonClose);
     authSection.innerHTML = '';
     contentPost.innerHTML = '';
