@@ -193,9 +193,10 @@ function emailVerification() {
       // An error happened.
       console.log(error);
     });
-}
+};
 
 };
+
 observerAuth();
 
 // <------Función para generar el contenido luego del Log in------>
