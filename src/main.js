@@ -77,12 +77,14 @@ const generateForgot = () => {
 const loadSignUp = () => {
   window.location.hash = '/SignUp';
   const sb = document.createElement('button');
+  sb.classList.add('button');
   sb.innerText = 'Registrarme';
   sb.addEventListener('click', () => {
     sendButton();
   });
   const toggleToSignIn = document.createElement('button');
   toggleToSignIn.innerHTML = 'Ya tengo cuenta';
+  toggleToSignIn.classList.add('button');
   toggleToSignIn.addEventListener('click', () => {
     loadSignIn();
   });
@@ -93,7 +95,6 @@ const loadSignUp = () => {
   });
 
   authSection.innerHTML = `
-<<<<<<< HEAD
     <form> 
       <div class="registerForm">
         <h1>Sign up</h1>
@@ -102,12 +103,6 @@ const loadSignUp = () => {
         <input type="password" id="password" placeholder="Contraseña">
       </div>  
     </form>    
-=======
-      <h1>Sign up</h1>
-      <input type="text" id="name" placeholder="Nombre">
-      <input type="email" id="email" placeholder="Email">
-      <input type="password" id="password" placeholder="Contraseña">
->>>>>>> e2fc85e8867b37a81cebbba6455b82b7c0c57cfb
   `;
   authSection.appendChild(sb);
   authSection.appendChild(buttonGoogle);

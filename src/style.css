@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 body{
     background-color: rgba(62, 109, 252, 1);
     font-family: 'Roboto', sans-serif;
@@ -21,15 +20,39 @@ body{
   .registerForm input{
     outline: 0;
     background: rgba(201, 224, 254, 1);
-    width: 100%;
+    width: 80%;
     border: 0;
-    margin: 0 0 50px; 
+    margin: 0 0 20px; 
     padding: 15px;
     box-sizing: border-box;
     border-radius: 5px;
     font-size: 14px;
     }
 
+    .button{
+    background: rgba(12, 80, 166, 1);
+    width: 50%;
+    height: 31px;
+    outline: 0;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: #FFFFFF;
+    /* border: 2px solid #0099CC; */
+    border:none;
+    border-radius: 5px;
+}
+
+  
+  /* width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease; */
+  
+
+    }
 
 }
 /*
@@ -38,7 +61,7 @@ width: 233px;
 height: 40px;
 left: 64px;
 top: 164px;
-=======
+
 .btnClear{
     
 }
@@ -47,5 +70,4 @@ top: 164px;
 width: 50px;
 height: 50px;
 border: 1px solid #FFFFFF;
-}
->>>>>>> e2fc85e8867b37a81cebbba6455b82b7c0c57cfb
+
