@@ -216,17 +216,17 @@ const createPost = () => {
 
 const savePost = (textPost) => {
   const texToSave = textPost;
-  console.log(`I am going to save ${texToSave} to Firestore`);
-  database.collection('post').add({
-    POST: texToSave,
+  console.log("I am going to save " + texToSave + " to Firestore");
+  database.collection("post").add({
+    POST: texToSave
   })
-    .then((docRef) => {
-      console.log('Status Saved!');
-      console.log('Document written with ID: ', docRef.id);
-    })
-    .catch((error) => {
-      console.error('Error adding document: ', error);
-    });
+  .then(docRef => {
+    console.log("Status Saved!");
+    console.log("Document written with ID: ", docRef.id);
+  })
+  .catch(error => {
+    console.error("Error adding document: ", error);
+  });
 };
 
 
@@ -234,28 +234,42 @@ const contentMessage = document.getElementById('contentMessage');
 
 const sendPost = (textPost) => {
   const texToSave = textPost;
-  console.log(`I am going to save ${texToSave} to Firestore`);
-  database.collection('post')
-    .onSnapshot((querySnapshot) => {
+  console.log("I am going to save " + texToSave + " to Firestore");
+  database.collection("post")
+  .onSnapshot((querySnapshot) => {
       contentMessage.innerHTML = '';
       querySnapshot.forEach((doc) => {
-        console.log(doc.id, ' => ', doc.data());
-        contentMessage.innerHTML += `
-            <div>
+            const divPost = document.createElement('div');
+            contentMessage.appendChild(divPost);
+            console.log(doc.id, " => ", doc.data());
+            divPost.innerHTML +=
+            `
             <div class="message"> ${doc.data().POST}</div>
-            <td> <button class="btnClear"></button>Editar</button>
-            <td> <button class="btnClear"></button>Eliminar</button>
-            </div>
-            `;
-      });
-    })
-    .catch((error) => {
-      console.error('Error adding document: ', error);
-    });
-};
+            `
+            const deleteButton = document.createElement('button');
+            deleteButton.innerHTML = 'Eliminar';
+            deleteButton.addEventListener('click' ,() => {
+              deletePost(doc.id);
+            })
 
-// function deletePost(id){
-//   database.collection("post").doc(id).delete().then(function() {
-//       console.log
-//   }
-// }
+            const editButton = document.createElement('button');
+            editButton.innerHTML = 'Editar';
+            editButton.addEventListener('click', () => {
+
+            })
+            divPost.appendChild(deleteButton);
+            divPost.appendChild(editButton);
+        });
+    })
+    .catch(error => {
+        console.log("Error getting documents: ", error);
+    });
+}
+
+function deletePost(id){
+  database.collection("post").doc(id).delete().then(function() {
+    console.log("Document successfully deleted!");
+  }).catch(function(error) {
+    console.error("Error removing document: ", error);
+  });
+}
