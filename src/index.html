@@ -9,6 +9,7 @@
   <title>Document</title>
 </head>
 <body>
+
   <section id="authSection">
 
   </section>
@@ -19,10 +20,22 @@
 
   <!--Desde aquí empiezan los JS-->
   
+  <section id="authSection"></section>
+
+  <div id="contentPage"></div>
+
+  <div id="contentPost"></div>
+
+  <div id="contentMessage"></div>
+  
+
+  <!--Desde aquí empiezan los JS-->
+
 
   <!-- The core Firebase JS SDK is always required and must be listed first -->
   <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-firestore.js"></script>
 
   <!-- TODO: Add SDKs for Firebase products that you want to use 
      https://firebase.google.com/docs/web/setup#available-libraries -->
@@ -41,6 +54,8 @@
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
   </script>
-  <script type="module" src="main.js"></script>
+
+  <script type="module" src="main.js"></script>  
+
 </body>
 </html>
