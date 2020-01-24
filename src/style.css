@@ -2,24 +2,35 @@ body{
     background-color: rgba(62, 109, 252, 1);
     font-family: 'Roboto', sans-serif;
 }
+@media screen  and (max-width: 560px) {
 
-#authSection{
-    display:flex;
-    justify-content: center;
-    align-content: center;
+  .registerForm {
+      display:flex;
+      flex-direction: column;
+      justify-content: center;
+      align-content: center;
+      align-items:center;
+      box-sizing: border-box;
+      flex-wrap:wrap;
+      min-width: 300px;
+      margin: 200px auto; 
+      border-radius: 5px;
+  }
+
+  .registerForm input{
+    outline: 0;
+    background: rgba(201, 224, 254, 1);
+    width: 100%;
+    border: 0;
+    margin: 0 0 50px; 
+    padding: 15px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-size: 14px;
+    }
+
+
 }
-
-
-.logForm{
-    display:flex;
-    margin:0 auto;
-    flex-direction: column;
-    width: 233px;
-    height: 40px;
-    background-color: aliceblue;
-}
-
-
 /*
 position: absolute;
 width: 233px;

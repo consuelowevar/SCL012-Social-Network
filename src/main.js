@@ -18,9 +18,11 @@ function loadSignIn() {
     loadSignUp();
   });
   authSection.innerHTML = `
-    <h1>Log in</h1>
-    <input type="email" id="emailLogIn" placeholder="Email">
-    <input type="password" id="passwordLogIn" placeholder="Contraseña">
+    <form> 
+      <h1>Log in</h1>
+      <input type="email" id="emailLogIn" placeholder="Email">
+      <input type="password" id="passwordLogIn" placeholder="Contraseña">
+    </form>  
   `;
   authSection.appendChild(sbSingIn);
   authSection.appendChild(toggleToSignUp);
@@ -40,12 +42,14 @@ function loadSignUp() {
   });
 
   authSection.innerHTML = `
-     <div class="logForm">
-      <h1>Sign up</h1>
-      <input type="name" id="nameLogIn" placeholder="Nombre">
-      <input type="email" id="email" placeholder="Email">
-      <input type="password" id="password" placeholder="Contraseña">
-    </div>    
+    <form> 
+      <div class="registerForm">
+        <h1>Sign up</h1>
+        <input type="name" id="nameLogIn" placeholder="Nombre">
+        <input type="email" id="email" placeholder="Email">
+        <input type="password" id="password" placeholder="Contraseña">
+      </div>  
+    </form>    
   `;
   authSection.appendChild(sb);
   authSection.appendChild(toggleToSignIn);
