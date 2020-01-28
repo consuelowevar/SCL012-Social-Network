@@ -293,6 +293,7 @@ const createPost = () => {
   contentPost.appendChild(divCatergorieAndSent);
 
   // creamos botton de envio de post
+
   const saveButton = document.createElement('img');
   saveButton.src = 'img/paper-plane.png';
   saveButton.id = 'saveButton';
@@ -339,7 +340,6 @@ const createPost = () => {
   `;
   divCatergorieAndSent.appendChild(saveButton);
 };
-
 
 //Guardar Post en Firebase 
 const savePost = (textPost) => {
