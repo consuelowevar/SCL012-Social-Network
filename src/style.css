@@ -1,51 +1,110 @@
 body{
-    background-color: rgba(62, 109, 252, 1);
+    background-color: rgb(82, 115, 211);
     font-family: 'Roboto', sans-serif;
 }
 
- @media screen  and (max-width: 560px) { 
+ @media screen and (max-width: 560px) {
 
-  .registerForm {
-      display:flex;
-      flex-direction: column;
-      justify-content: center;
-      align-content: center;
-      align-items:center;
-      box-sizing: border-box;
-      flex-wrap:wrap;
-      min-width: 300px;
-      margin: 200px auto; 
-      border-radius: 5px;
-  }
+     .registerForm {
+         /* display:flex;
+         flex-wrap: wrap;
+         box-sizing: border-box; 
+         justify-content: center;
+         flex-direction: column;
+         background-color: antiquewhite;
+         align-items:center;
+         align-content: stretch;    
+        /* flex-wrap:wrap;  */
+        /* min-width: 10px; 
+        margin: 200px auto; 
+        border-radius: 5px;  */ */
+    }
 
-  .registerForm input{
+    form{
+        align-content: space-around;
+        background-color:red;
+        display:flex;
+        flex-direction: column;
+        text-align: left;
+        align-content: center;
+        
+
+        /* flex-wrap:wrap; */
+        /* width: 80%; */
+        /* justify-content: center;
+        align-items:center;  */
+        /* align-content: stretch; */
+        /* 
+        margin: 200px auto; 
+        border-radius: 5px; */
+
+    } 
+
+  
+
+ .registerForm input{
     outline: 0;
     background: rgba(201, 224, 254, 1);
-    width: 80%;
     border: 0;
     margin: 0 0 20px; 
     padding: 15px;
-    box-sizing: border-box;
     border-radius: 5px;
     font-size: 14px;
-    }
+     /* width: 80%; */
+     /* box-sizing: border-box; */
 
-    .button{
-    background: rgba(12, 80, 166, 1);
-    box-sizing: border-box;
-    width: 50%;
-    height: 31px;
-    outline: 0;
-    text-transform: uppercase;
-    cursor: pointer;
-    color: #FFFFFF;
-    /* border: 2px solid #0099CC; */
-    border:none;
-    border-radius: 5px;
+
     }
+    
+     .button{
+        display:flex;
+        background: rgba(12, 80, 166, 1);
+        /* box-sizing: border-box; */
+        width: 50%;
+        height: 31px;
+        outline: 0;
+        text-transform: uppercase;
+        cursor: pointer;
+        color: #FFFFFF;
+        border:none;
+        border-radius: 5px;
+        } 
 
 } 
   
+@media screen and (min-width: 1000px){
+
+    .registerForm {
+        background-color:red;
+        display:flex;
+        justify-content: center;
+        width: 90%;
+
+
+    }
+
+
+    form{
+        align-content: space-around;
+        background-color:yellow;
+        display:flex;
+        flex-direction: column;
+        text-align: center;
+        /* flex-wrap:wrap; */
+        width: 80%;
+        /* justify-content: center;
+        align-items:center;  */
+        /* align-content: stretch; */
+        /* 
+        margin: 200px auto; 
+        border-radius: 5px; */
+
+    }
+
+
+
+
+}
   /* width: 100%;
   border: 0;
   padding: 15px;

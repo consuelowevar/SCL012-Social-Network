@@ -94,14 +94,17 @@ const loadSignUp = () => {
   });
 
   authSection.innerHTML = `
-    <form> 
+    <div class="containerLog">
       <div class="registerForm">
-        <h1>Sign up</h1>
-        <input type="name" id="nameLogIn" placeholder="Nombre">
-        <input type="email" id="email" placeholder="Email">
-        <input type="password" id="password" placeholder="Contraseña">
-      </div>  
-    </form>    
+      <img src="./images/Logo2-white.png" alt="imagen no encontrada" height="90">
+        <form> 
+          <h2>Crea tu cuenta:</h2>
+          <input type="name" id="nameLogIn" placeholder="Nombre">
+          <input type="email" id="email" placeholder="Email">
+          <input type="password" id="password" placeholder="Contraseña">
+        </form>
+      </div>
+    </div>   
   `;
   authSection.appendChild(sb);
   authSection.appendChild(buttonGoogle);
@@ -155,50 +158,6 @@ const observerAuth = () => {
 };
 observerAuth();
 
-<<<<<<< HEAD
-// Función para generar el contenido luego del Log in.
-function afterLogIn(user) {
-  const contentPage = document.getElementById('contentPage');
-  if (user.emailVerified) {
-    contentPage.innerHTML = `
-    <h3>Bienvenido</h3>
-    <button id='closeSession'>Cerrar Sesión</button>`;
-
-    const closeSession = document.querySelector('#closeSession');
-    closeSession.addEventListener('click', () => {
-      firebase.auth().signOut()
-        .then(() => {
-          console.log('Saliendo');
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    });
-  } else {
-    console.log('No está verificado');
-    contentPage.innerHTML = '<p>Verifica tu mail para poder entrar a la aplicación</p>';
-  }
-}
-
-// Función que envía el mail de verificación
-function emailVerification() {
-  const user = firebase.auth().currentUser;
-
-  user.sendEmailVerification()
-    .then(() => {
-      // Email sent.
-      console.log('Enviando correo...');
-    })
-    .catch((error) => {
-      // An error happened.
-      console.log(error);
-    });
-};
-
-
-observerAuth();
-=======
->>>>>>> 2427c20ecb9080b0fc3b7fde499c2e7b7434de49
 
 // <------Función para generar el contenido luego del Log in/Sign up------>
 const afterLogIn = (user) => {
