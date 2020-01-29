@@ -19,31 +19,39 @@ const loadSignIn = () => {
   // Botón de entrar
   const sbSingIn = document.createElement('button');
   sbSingIn.innerText = 'Entrar';
+  sbSingIn.classList.add("button");
   sbSingIn.addEventListener('click', () => {
     sendButtonLogIn();
   });
   // Botón de ya tengo cuenta
   const toggleToSignUp = document.createElement('button');
   toggleToSignUp.innerHTML = 'No tengo cuenta';
+  toggleToSignUp.classList.add("button");
+  toggleToSignUp.setAttribute("id", "buttonCreateAccount");
   toggleToSignUp.addEventListener('click', () => {
     loadSignUp();
   });
   // Botón de entrar con Google
   const buttonGoogle = document.createElement('button');
   buttonGoogle.innerHTML = 'Ingresa con Google';
+  buttonGoogle.classList.add("button");
   buttonGoogle.addEventListener('click', () => {
     signUpGoogle();
   });
   // Link de olvidé contraseña
   const linkToForgot = document.createElement('span');
   linkToForgot.innerHTML = 'Olvidé mi contraseña';
+  linkToForgot.setAttribute("id", "linkForgot")
   linkToForgot.addEventListener('click', () => {
     generateForgot();
   });
   authSection.innerHTML = `
-    <h1>Log in</h1>
-    <input type="email" id="emailLogIn" placeholder="Email">
-    <input type="password" id="passwordLogIn" placeholder="Contraseña">
+  <img src="./images/Logo2-white.png" alt="imagen no encontrada" height="100">
+    <form> 
+      <h2>Inicia Sesión</h2>
+      <input type="email" id="emailLogIn" placeholder="Email">
+      <input type="password" id="passwordLogIn" placeholder="Contraseña">
+    </form>  
   `;
   authSection.appendChild(sbSingIn);
   authSection.appendChild(linkToForgot);
@@ -74,26 +82,39 @@ const generateForgot = () => {
 const loadSignUp = () => {
   window.location.hash = '/SignUp';
   const sb = document.createElement('button');
+  sb.classList.add('button');
   sb.innerText = 'Registrarme';
   sb.addEventListener('click', () => {
     sendButton();
   });
   const toggleToSignIn = document.createElement('button');
   toggleToSignIn.innerHTML = 'Ya tengo cuenta';
+  toggleToSignIn.setAttribute("id", "buttonSignIn");
+  toggleToSignIn.classList.add('button');
   toggleToSignIn.addEventListener('click', () => {
     loadSignIn();
   });
   const buttonGoogle = document.createElement('button');
   buttonGoogle.innerHTML = 'Ingresa con Google';
+  buttonGoogle.setAttribute("id", "buttonGoogle");
+  buttonGoogle.classList.add('button');
   buttonGoogle.addEventListener('click', () => {
     signUpGoogle();
   });
 
   authSection.innerHTML = `
-      <h1>Sign up</h1>
-      <input type="text" id="name" placeholder="Nombre">
-      <input type="email" id="email" placeholder="Email">
-      <input type="password" id="password" placeholder="Contraseña">
+    <div class="containerLog">
+      <div class="registerForm">
+      <img src="./images/Logo2-white.png" alt="imagen no encontrada" height="100">
+        <form> 
+          <h2>Crea tu cuenta</h2>
+          <input type="name" id="nameLogIn" placeholder="Nombre">
+          <input type="email" id="email" placeholder="Email">
+          <input type="password" id="password" placeholder="Contraseña">
+          <input type="password" id="passwordConfirm" placeholder="Repetir contraseña">
+        </form>
+      </div>
+    </div>   
   `;
   authSection.appendChild(sb);
   authSection.appendChild(buttonGoogle);
