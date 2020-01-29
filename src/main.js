@@ -19,14 +19,14 @@ const loadSignIn = () => {
   // Botón de entrar
   const sbSingIn = document.createElement('button');
   sbSingIn.innerText = 'Entrar';
-  sbSingIn.classList.add("button");
+  sbSingIn.classList.add("buttonLog");
   sbSingIn.addEventListener('click', () => {
     sendButtonLogIn();
   });
   // Botón de ya tengo cuenta
   const toggleToSignUp = document.createElement('button');
   toggleToSignUp.innerHTML = 'No tengo cuenta';
-  toggleToSignUp.classList.add("button");
+  toggleToSignUp.classList.add("buttonLog");
   toggleToSignUp.setAttribute("id", "buttonCreateAccount");
   toggleToSignUp.addEventListener('click', () => {
     loadSignUp();
@@ -34,23 +34,23 @@ const loadSignIn = () => {
   // Botón de entrar con Google
   const buttonGoogle = document.createElement('button');
   buttonGoogle.innerHTML = 'Ingresa con Google';
-  buttonGoogle.classList.add("button");
+  buttonGoogle.classList.add("buttonLog");
   buttonGoogle.addEventListener('click', () => {
     signUpGoogle();
   });
   // Link de olvidé contraseña
   const linkToForgot = document.createElement('span');
   linkToForgot.innerHTML = 'Olvidé mi contraseña';
-  linkToForgot.setAttribute("id", "linkForgot")
+  linkToForgot.setAttribute("id", "linkForgot");
   linkToForgot.addEventListener('click', () => {
     generateForgot();
   });
   authSection.innerHTML = `
-  <img src="./images/Logo2-white.png" alt="imagen no encontrada" height="100">
-    <form> 
+  <img id="imgLogo" src="./images/Logo2-white.png" alt="imagen no encontrada" height="100">
+    <form class="formLog"> 
       <h2>Inicia Sesión</h2>
-      <input type="email" id="emailLogIn" placeholder="Email">
-      <input type="password" id="passwordLogIn" placeholder="Contraseña">
+      <input class="inputLog" type="email" id="emailLogIn" placeholder="Email">
+      <input class="inputLog" type="password" id="passwordLogIn" placeholder="Contraseña">
     </form>  
   `;
   authSection.appendChild(sbSingIn);
@@ -66,8 +66,10 @@ const generateForgot = () => {
   window.location.hash = '/forgot';
   const inputEmail = document.createElement('input');
   inputEmail.placeholder = 'Tu email';
+  inputEmail.classList.add("inputLog");
   const buttonForgot = document.createElement('button');
   buttonForgot.innerHTML = 'Recuperar contraseña';
+  buttonForgot.classList.add("buttonLog");
   buttonForgot.addEventListener('click', () => {
     forgotPassword(inputEmail.value);
   });
@@ -82,7 +84,7 @@ const generateForgot = () => {
 const loadSignUp = () => {
   window.location.hash = '/SignUp';
   const sb = document.createElement('button');
-  sb.classList.add('button');
+  sb.classList.add('buttonLog');
   sb.innerText = 'Registrarme';
   sb.addEventListener('click', () => {
     sendButton();
@@ -90,31 +92,28 @@ const loadSignUp = () => {
   const toggleToSignIn = document.createElement('button');
   toggleToSignIn.innerHTML = 'Ya tengo cuenta';
   toggleToSignIn.setAttribute("id", "buttonSignIn");
-  toggleToSignIn.classList.add('button');
+  toggleToSignIn.classList.add('buttonLog');
   toggleToSignIn.addEventListener('click', () => {
     loadSignIn();
   });
   const buttonGoogle = document.createElement('button');
   buttonGoogle.innerHTML = 'Ingresa con Google';
   buttonGoogle.setAttribute("id", "buttonGoogle");
-  buttonGoogle.classList.add('button');
+  buttonGoogle.classList.add('buttonLog');
   buttonGoogle.addEventListener('click', () => {
     signUpGoogle();
   });
 
   authSection.innerHTML = `
-    <div class="containerLog">
-      <div class="registerForm">
-      <img src="./images/Logo2-white.png" alt="imagen no encontrada" height="100">
-        <form> 
+    <img id"imgLogo" src="./images/Logo2-white.png" alt="imagen no encontrada" height="100">
+       <form class="formLog"> 
           <h2>Crea tu cuenta</h2>
-          <input type="name" id="nameLogIn" placeholder="Nombre">
-          <input type="email" id="email" placeholder="Email">
-          <input type="password" id="password" placeholder="Contraseña">
-          <input type="password" id="passwordConfirm" placeholder="Repetir contraseña">
-        </form>
-      </div>
-    </div>   
+          <input class="inputLog" type="name" id="nameLogIn" placeholder="Nombre">
+          <input class="inputLog" type="email" id="email" placeholder="Email">
+          <input class="inputLog" type="password" id="password" placeholder="Contraseña">
+          <input class="inputLog" type="password" id="passwordConfirm" placeholder="Repetir contraseña">
+       </form>
+    
   `;
   authSection.appendChild(sb);
   authSection.appendChild(buttonGoogle);
@@ -151,7 +150,7 @@ const observerAuth = () => {
       afterLogIn(user);
       // User is signed in.
       const displayName = user.displayName;
-    //  console.log(user);
+      //  console.log(user);
       const email = user.email;
       const emailVerified = user.emailVerified;
       const photoURL = user.photoURL;
@@ -174,7 +173,7 @@ observerAuth();
 const afterLogIn = (user) => {
   if (user.emailVerified) {
     window.location.hash = '/home';
-    document.body.style.backgroundColor = "white";
+    document.body.style.backgroundColor = 'white';
     contentPage.innerHTML = ` 
     <div class="align">
       <nav class="navigation navigation--inline">
@@ -303,12 +302,12 @@ const createPost = () => {
   const input = document.createElement('textarea');
   // aquí indicamos que es un input de tipo text
   input.classList.add('createMessage');
-  input.placeholder = 'Escribe tu post aquí'
-  input.id  = 'textToSave';
+  input.placeholder = 'Escribe tu post aquí';
+  input.id = 'textToSave';
 
   // y por ultimo agreamos el componente creado al padre
   contentPost.appendChild(input);
-  
+
   const divCatergorieAndSent = document.createElement('div');
   divCatergorieAndSent.id = 'CatergorieAndSent';
   contentPost.appendChild(divCatergorieAndSent);
@@ -317,7 +316,7 @@ const createPost = () => {
   const saveButton = document.createElement('img');
   saveButton.src = 'img/paper-plane.png';
   saveButton.id = 'saveButton';
-  
+
   saveButton.addEventListener('click', () => {
     const textToSave = input.value;
     console.log(textToSave);
@@ -361,106 +360,106 @@ const createPost = () => {
   divCatergorieAndSent.appendChild(saveButton);
 };
 
-//Guardar Post en Firebase 
+// Guardar Post en Firebase
 const savePost = (textPost) => {
   const texToSave = textPost;
-  console.log("I am going to save " + texToSave + " to Firestore");
-  database.collection("post").add({
+  console.log(`I am going to save ${  texToSave  } to Firestore`);
+  database.collection('post').add({
     POST: texToSave,
-    postTime: new Date()
+    postTime: new Date(),
   })
-  .then(docRef => {
-    console.log("Status Saved!");
-    console.log("Document written with ID: ", docRef.id);
-  })
-  .catch(error => {
-    console.error("Error adding document: ", error);
-  });
+    .then((docRef) => {
+      console.log('Status Saved!');
+      console.log('Document written with ID: ', docRef.id);
+    })
+    .catch((error) => {
+      console.error('Error adding document: ', error);
+    });
 };
 
 
-//Traer Post
+// Traer Post
 const contentMessage = document.getElementById('contentMessage');
 
 const sendPost = (textPost) => {
   const texToSave = textPost;
-  console.log("I am going to save " + texToSave + " to Firestore");
+  console.log(`I am going to save ${  texToSave  } to Firestore`);
 
-  const colletionOfPost = database.collection("post")
-  const postsOrdered = colletionOfPost.orderBy("postTime", "desc")
+  const colletionOfPost = database.collection('post');
+  const postsOrdered = colletionOfPost.orderBy('postTime', 'desc');
 
 
   postsOrdered.onSnapshot((querySnapshot) => {
-      contentMessage.innerHTML = '';
-      querySnapshot.forEach((doc) => {
-            const divPost = document.createElement('div');
-            divPost.id = `divPost-${doc.id}`
-            contentMessage.appendChild(divPost);
-            console.log(doc.id, " => ", doc.data());
-            divPost.innerHTML +=
-            `
+    contentMessage.innerHTML = '';
+    querySnapshot.forEach((doc) => {
+      const divPost = document.createElement('div');
+      divPost.id = `divPost-${doc.id}`;
+      contentMessage.appendChild(divPost);
+      console.log(doc.id, ' => ', doc.data());
+      divPost.innerHTML
+            += `
             <p class="message" id='messagePosted'> ${doc.data().POST}</p>
-            `
-            const deleteButton = document.createElement('button');
-            deleteButton.innerHTML = 'Eliminar';
-            deleteButton.addEventListener('click' ,() => {
-              deletePost(doc.id);
-            })
+            `;
+      const deleteButton = document.createElement('button');
+      deleteButton.innerHTML = 'Eliminar';
+      deleteButton.addEventListener('click', () => {
+        deletePost(doc.id);
+      });
 
-            const editButton = document.createElement('button');
-            editButton.innerHTML = 'Editar';
+      const editButton = document.createElement('button');
+      editButton.innerHTML = 'Editar';
 
-            editButton.id = 'Edit'
-            editButton.addEventListener('click', () => {
-              document.getElementById(`divPost-${doc.id}`).innerHTML = `<textarea id='editTextArea'></textarea>`
-              document.getElementById('editTextArea').value = doc.data().POST;
-              const confirmButton = document.createElement('button');
-              confirmButton.innerHTML = 'confirmar'
-              confirmButton.addEventListener('click', ()=>{
-                editPost(doc.id,document.getElementById('editTextArea').value);
-                console.log('Está saliendo de editar')
-              });
-              document.getElementById(`divPost-${doc.id}`).appendChild(confirmButton);
-            })
-            divPost.appendChild(deleteButton);
-            divPost.appendChild(editButton);
+      editButton.id = 'Edit';
+      editButton.addEventListener('click', () => {
+        document.getElementById(`divPost-${doc.id}`).innerHTML = '<textarea id=\'editTextArea\'></textarea>';
+        document.getElementById('editTextArea').value = doc.data().POST;
+        const confirmButton = document.createElement('button');
+        confirmButton.innerHTML = 'confirmar';
+        confirmButton.addEventListener('click', () => {
+          editPost(doc.id, document.getElementById('editTextArea').value);
+          console.log('Está saliendo de editar');
         });
+        document.getElementById(`divPost-${doc.id}`).appendChild(confirmButton);
+      });
+      divPost.appendChild(deleteButton);
+      divPost.appendChild(editButton);
     })
+      .catch((error) => {
+        console.log('Error getting documents: ', error);
+      });
+  });
+};
+
+// Eliminar Post
+function deletePost(id) {
+  database.collection('post').doc(id).delete().then(() => {
+    console.log('Document successfully deleted!');
+  })
     .catch((error) => {
-        console.log("Error getting documents: ", error);
+      console.error('Error removing document: ', error);
     });
 }
 
-//Eliminar Post
-function deletePost(id){
-  database.collection("post").doc(id).delete().then(function() {
-    console.log("Document successfully deleted!");
-  }).catch(function(error) {
-    console.error("Error removing document: ", error);
+
+// //Editar Post
+const editPost = (id, textToSave) => {
+  const postRef = database.collection('post').doc(id);
+  console.log('Está editando');
+  return postRef.update({
+    POST: textToSave,
+    postTime: new Date(),
+  }).then(() => {
+    console.log('Document successfully updated!');
+  }).catch((error) => {
+    console.error('Error updating document: ', error);
   });
-}
-
-
-////Editar Post
-const editPost = (id, textToSave) =>{
-
-    const postRef = database.collection("post").doc(id);
-      console.log('Está editando')
-      return postRef.update({
-        POST: textToSave,
-        postTime: new Date()
-      }).then(function() {
-        console.log("Document successfully updated!");
-      }).catch(function(error) {
-        console.error("Error updating document: ", error);
-      }) 
-}
+};
 
 
 // <-------------Función editar post-------------->
 //  let editPost = (id, textToSave) => {
 //   console.log('Está entrando a editar')
-      
+
 //       database.collection('post').doc(id).set({
 //         POST: textToSave,
 //         postTime: new Date()
@@ -471,7 +470,3 @@ const editPost = (id, textToSave) =>{
 //           console.log('Error update document: ', error)
 //         });
 //     }
-    
-
-
-
