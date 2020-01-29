@@ -19,6 +19,7 @@ const loadSignIn = () => {
   // Botón de entrar
   const sbSingIn = document.createElement('button');
   sbSingIn.innerText = 'Entrar';
+  sbSingIn.classList.add("button");
   sbSingIn.addEventListener('click', () => {
     sendButtonLogIn();
   });
@@ -31,6 +32,7 @@ const loadSignIn = () => {
   // Botón de entrar con Google
   const buttonGoogle = document.createElement('button');
   buttonGoogle.innerHTML = 'Ingresa con Google';
+  buttonGoogle.classList.add("button");
   buttonGoogle.addEventListener('click', () => {
     signUpGoogle();
   });
@@ -41,8 +43,9 @@ const loadSignIn = () => {
     generateForgot();
   });
   authSection.innerHTML = `
+  <img src="./images/Logo2-white.png" alt="imagen no encontrada" height="100">
     <form> 
-      <h1>Log in</h1>
+      <h2>Inicia Sesión</h2>
       <input type="email" id="emailLogIn" placeholder="Email">
       <input type="password" id="passwordLogIn" placeholder="Contraseña">
     </form>  

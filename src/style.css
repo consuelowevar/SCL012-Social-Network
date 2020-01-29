@@ -3,7 +3,7 @@ body{
     font-family: 'Roboto', sans-serif;
 }
 
- @media screen and (max-width: 560px) {
+  @media screen and (max-width: 560px) { 
 
     #authSection {
         display:flex;
@@ -12,13 +12,13 @@ body{
         justify-content: center;
         align-content: center;
         align-items: center;
-
     }
 
     img{
         margin-top: 0.5em;
     }
-     .registerForm {
+    
+    .registerForm {
          display:flex;
          flex-direction: column;
          justify-content: center;
@@ -45,7 +45,7 @@ body{
         padding-bottom: 1.3em;
     } 
 
-    .registerForm input {
+    input {
         outline: 0;
         background: rgba(201, 224, 254, 1);
         box-sizing: border-box;
@@ -81,6 +81,8 @@ body{
         border: 2px solid rgb(159, 170, 247);
     }
 
+    #buttonSignIn :ho
+
     /* #buttonGoogle{
         background-image:url(file:///".src/images/Google-logo.png");
         width: 63%;
@@ -89,7 +91,18 @@ body{
     } */
 
 
-} 
-  
+ }  
+
+
+  /*960 px*/
 @media screen and (min-width: 1000px){
+
+
+
+
+
+
+
+
+
 }
