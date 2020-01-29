@@ -151,7 +151,7 @@ const observerAuth = () => {
       afterLogIn(user);
       // User is signed in.
       const displayName = user.displayName;
-    //  console.log(user);
+      //  console.log(user);
       const email = user.email;
       const emailVerified = user.emailVerified;
       const photoURL = user.photoURL;
@@ -174,7 +174,7 @@ observerAuth();
 const afterLogIn = (user) => {
   if (user.emailVerified) {
     window.location.hash = '/home';
-    document.body.style.backgroundColor = "white";
+    document.body.style.backgroundColor = 'white';
     contentPage.innerHTML = ` 
     <div class="align">
       <nav class="navigation navigation--inline">
@@ -303,12 +303,12 @@ const createPost = () => {
   const input = document.createElement('textarea');
   // aquí indicamos que es un input de tipo text
   input.classList.add('createMessage');
-  input.placeholder = 'Escribe tu post aquí'
-  input.id  = 'textToSave';
+  input.placeholder = 'Escribe tu post aquí';
+  input.id = 'textToSave';
 
   // y por ultimo agreamos el componente creado al padre
   contentPost.appendChild(input);
-  
+
   const divCatergorieAndSent = document.createElement('div');
   divCatergorieAndSent.id = 'CatergorieAndSent';
   contentPost.appendChild(divCatergorieAndSent);
@@ -317,7 +317,7 @@ const createPost = () => {
   const saveButton = document.createElement('img');
   saveButton.src = 'img/paper-plane.png';
   saveButton.id = 'saveButton';
-  
+
   saveButton.addEventListener('click', () => {
     const textToSave = input.value;
     console.log(textToSave);
@@ -361,106 +361,106 @@ const createPost = () => {
   divCatergorieAndSent.appendChild(saveButton);
 };
 
-//Guardar Post en Firebase 
+// Guardar Post en Firebase
 const savePost = (textPost) => {
   const texToSave = textPost;
-  console.log("I am going to save " + texToSave + " to Firestore");
-  database.collection("post").add({
+  console.log(`I am going to save ${  texToSave  } to Firestore`);
+  database.collection('post').add({
     POST: texToSave,
-    postTime: new Date()
+    postTime: new Date(),
   })
-  .then(docRef => {
-    console.log("Status Saved!");
-    console.log("Document written with ID: ", docRef.id);
-  })
-  .catch(error => {
-    console.error("Error adding document: ", error);
-  });
+    .then((docRef) => {
+      console.log('Status Saved!');
+      console.log('Document written with ID: ', docRef.id);
+    })
+    .catch((error) => {
+      console.error('Error adding document: ', error);
+    });
 };
 
 
-//Traer Post
+// Traer Post
 const contentMessage = document.getElementById('contentMessage');
 
 const sendPost = (textPost) => {
   const texToSave = textPost;
-  console.log("I am going to save " + texToSave + " to Firestore");
+  console.log(`I am going to save ${  texToSave  } to Firestore`);
 
-  const colletionOfPost = database.collection("post")
-  const postsOrdered = colletionOfPost.orderBy("postTime", "desc")
+  const colletionOfPost = database.collection('post');
+  const postsOrdered = colletionOfPost.orderBy('postTime', 'desc');
 
 
   postsOrdered.onSnapshot((querySnapshot) => {
-      contentMessage.innerHTML = '';
-      querySnapshot.forEach((doc) => {
-            const divPost = document.createElement('div');
-            divPost.id = `divPost-${doc.id}`
-            contentMessage.appendChild(divPost);
-            console.log(doc.id, " => ", doc.data());
-            divPost.innerHTML +=
-            `
+    contentMessage.innerHTML = '';
+    querySnapshot.forEach((doc) => {
+      const divPost = document.createElement('div');
+      divPost.id = `divPost-${doc.id}`;
+      contentMessage.appendChild(divPost);
+      console.log(doc.id, ' => ', doc.data());
+      divPost.innerHTML
+            += `
             <p class="message" id='messagePosted'> ${doc.data().POST}</p>
-            `
-            const deleteButton = document.createElement('button');
-            deleteButton.innerHTML = 'Eliminar';
-            deleteButton.addEventListener('click' ,() => {
-              deletePost(doc.id);
-            })
+            `;
+      const deleteButton = document.createElement('button');
+      deleteButton.innerHTML = 'Eliminar';
+      deleteButton.addEventListener('click', () => {
+        deletePost(doc.id);
+      });
 
-            const editButton = document.createElement('button');
-            editButton.innerHTML = 'Editar';
+      const editButton = document.createElement('button');
+      editButton.innerHTML = 'Editar';
 
-            editButton.id = 'Edit'
-            editButton.addEventListener('click', () => {
-              document.getElementById(`divPost-${doc.id}`).innerHTML = `<textarea id='editTextArea'></textarea>`
-              document.getElementById('editTextArea').value = doc.data().POST;
-              const confirmButton = document.createElement('button');
-              confirmButton.innerHTML = 'confirmar'
-              confirmButton.addEventListener('click', ()=>{
-                editPost(doc.id,document.getElementById('editTextArea').value);
-                console.log('Está saliendo de editar')
-              });
-              document.getElementById(`divPost-${doc.id}`).appendChild(confirmButton);
-            })
-            divPost.appendChild(deleteButton);
-            divPost.appendChild(editButton);
+      editButton.id = 'Edit';
+      editButton.addEventListener('click', () => {
+        document.getElementById(`divPost-${doc.id}`).innerHTML = '<textarea id=\'editTextArea\'></textarea>';
+        document.getElementById('editTextArea').value = doc.data().POST;
+        const confirmButton = document.createElement('button');
+        confirmButton.innerHTML = 'confirmar';
+        confirmButton.addEventListener('click', () => {
+          editPost(doc.id, document.getElementById('editTextArea').value);
+          console.log('Está saliendo de editar');
         });
+        document.getElementById(`divPost-${doc.id}`).appendChild(confirmButton);
+      });
+      divPost.appendChild(deleteButton);
+      divPost.appendChild(editButton);
     })
+      .catch((error) => {
+        console.log('Error getting documents: ', error);
+      });
+  });
+};
+
+// Eliminar Post
+function deletePost(id) {
+  database.collection('post').doc(id).delete().then(() => {
+    console.log('Document successfully deleted!');
+  })
     .catch((error) => {
-        console.log("Error getting documents: ", error);
+      console.error('Error removing document: ', error);
     });
 }
 
-//Eliminar Post
-function deletePost(id){
-  database.collection("post").doc(id).delete().then(function() {
-    console.log("Document successfully deleted!");
-  }).catch(function(error) {
-    console.error("Error removing document: ", error);
+
+// //Editar Post
+const editPost = (id, textToSave) => {
+  const postRef = database.collection('post').doc(id);
+  console.log('Está editando');
+  return postRef.update({
+    POST: textToSave,
+    postTime: new Date(),
+  }).then(() => {
+    console.log('Document successfully updated!');
+  }).catch((error) => {
+    console.error('Error updating document: ', error);
   });
-}
-
-
-////Editar Post
-const editPost = (id, textToSave) =>{
-
-    const postRef = database.collection("post").doc(id);
-      console.log('Está editando')
-      return postRef.update({
-        POST: textToSave,
-        postTime: new Date()
-      }).then(function() {
-        console.log("Document successfully updated!");
-      }).catch(function(error) {
-        console.error("Error updating document: ", error);
-      }) 
-}
+};
 
 
 // <-------------Función editar post-------------->
 //  let editPost = (id, textToSave) => {
 //   console.log('Está entrando a editar')
-      
+
 //       database.collection('post').doc(id).set({
 //         POST: textToSave,
 //         postTime: new Date()
@@ -471,7 +471,3 @@ const editPost = (id, textToSave) =>{
 //           console.log('Error update document: ', error)
 //         });
 //     }
-    
-
-
-
