@@ -293,7 +293,6 @@ const createPost = () => {
   contentPost.appendChild(divCatergorieAndSent);
 
   // creamos botton de envio de post
-
   const saveButton = document.createElement('img');
   saveButton.src = 'img/paper-plane.png';
   saveButton.id = 'saveButton';
@@ -346,7 +345,8 @@ const savePost = (textPost) => {
   const texToSave = textPost;
   console.log("I am going to save " + texToSave + " to Firestore");
   database.collection("post").add({
-    POST: texToSave
+    POST: texToSave,
+    postTime: new Date()
   })
   .then(docRef => {
     console.log("Status Saved!");
@@ -364,16 +364,21 @@ const contentMessage = document.getElementById('contentMessage');
 const sendPost = (textPost) => {
   const texToSave = textPost;
   console.log("I am going to save " + texToSave + " to Firestore");
-  database.collection("post")
-  .onSnapshot((querySnapshot) => {
+
+  const colletionOfPost = database.collection("post")
+  const postsOrdered = colletionOfPost.orderBy("postTime", "desc")
+
+
+  postsOrdered.onSnapshot((querySnapshot) => {
       contentMessage.innerHTML = '';
       querySnapshot.forEach((doc) => {
             const divPost = document.createElement('div');
+            divPost.id = `divPost-${doc.id}`
             contentMessage.appendChild(divPost);
             console.log(doc.id, " => ", doc.data());
             divPost.innerHTML +=
             `
-            <div class="message"> ${doc.data().POST}</div>
+            <p class="message" id='messagePosted'> ${doc.data().POST}</p>
             `
             const deleteButton = document.createElement('button');
             deleteButton.innerHTML = 'Eliminar';
@@ -386,7 +391,15 @@ const sendPost = (textPost) => {
 
             editButton.id = 'Edit'
             editButton.addEventListener('click', () => {
-              editPost(doc.id,doc.data().POST);
+              document.getElementById(`divPost-${doc.id}`).innerHTML = `<textarea id='editTextArea'></textarea>`
+              document.getElementById('editTextArea').value = doc.data().POST;
+              const confirmButton = document.createElement('button');
+              confirmButton.innerHTML = 'confirmar'
+              confirmButton.addEventListener('click', ()=>{
+                editPost(doc.id,document.getElementById('editTextArea').value);
+                console.log('Está saliendo de editar')
+              });
+              document.getElementById(`divPost-${doc.id}`).appendChild(confirmButton);
             })
             divPost.appendChild(deleteButton);
             divPost.appendChild(editButton);
@@ -407,31 +420,37 @@ function deletePost(id){
 }
 
 
-//Editar Post
-function editPost(id, texToSave){
+////Editar Post
+const editPost = (id, textToSave) =>{
 
-    document.getElementById('textToSave').value = texToSave;
-    const changeButton = document.getElementById('saveButton');
-    changeButton.innerHTML = 'Editar';
-
-    changeButton.addEventListener('click' ,() => {
-
-      const postRef = database.collection("post").doc(id);
-      
-      const textToSave = document.getElementById('textToSave').value;
-        console.log('Está editando')
-        return postRef.update({
-          POST: textToSave,
-        })
-        .then(function() {
-          console.log("Document successfully updated!");
-          changeButton.innerHTML = 'Save Post';
-          document.getElementById('textToSave').value = '';
-        })
-        .catch(function(error) {
-          // The document probably doesn't exist.
-          console.error("Error updating document: ", error);
-        })
-    })
+    const postRef = database.collection("post").doc(id);
+      console.log('Está editando')
+      return postRef.update({
+        POST: textToSave,
+        postTime: new Date()
+      }).then(function() {
+        console.log("Document successfully updated!");
+      }).catch(function(error) {
+        console.error("Error updating document: ", error);
+      }) 
 }
+
+
+// <-------------Función editar post-------------->
+//  let editPost = (id, textToSave) => {
+//   console.log('Está entrando a editar')
+      
+//       database.collection('post').doc(id).set({
+//         POST: textToSave,
+//         postTime: new Date()
+//       }).then(function () {
+//         console.log('document successfully updated!!');
+//       })
+//         .catch(function () {
+//           console.log('Error update document: ', error)
+//         });
+//     }
+    
+
+
 
