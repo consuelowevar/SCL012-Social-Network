@@ -78,6 +78,13 @@ h2 {
   border: 2px solid rgb(159, 170, 247);
 }
 
+@media screen and (min-width:960px){
+
+  .buttonLog, #buttonSignIn, #buttonCreateAccount{
+
+    max-width: 23em;
+  }
+}
 #linkForgot{
   color: #FFFFFF;
   margin-bottom: 1em;
