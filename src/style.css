@@ -5,119 +5,101 @@ body{
     min-height: 100%;
 }
 
-  @media screen and (max-width: 560px) { 
+  /* @media screen and (max-width: 560px) {  */
 
-    #authSection {
-        display:flex;
-        flex-wrap: wrap;
-        flex-direction: column;
-        justify-content: center;
-        align-content: center;
-        align-items: center;
-    }
+#authSection {
+  display:flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
 
-    img {
-        margin-top: 0.5em;
-    }
+#imgLogo {
+  margin-top: 0.5em;
+}
     
-    .registerForm {
-         display:flex;
-         flex-direction: column;
-         justify-content: center;
-         align-items: center;
-         align-content: center;
-    }
+h2 {
+  color: #FFFFFF;
+  font-weight: 300;
+  font-size: 18px;
+  text-align: left;
+}
 
-    h2 {
-        color: #FFFFFF;
-        font-weight: 300;
-        font-size: 18px;
-        text-align: left;
-    }
+.formLog {
+  align-content: space-around;
+  display:flex;
+  flex-direction: column;
+  align-content:center; 
+  justify-content: center;
+  align-items: center;
+  max-width: 18em;
+  padding-top: 2.3em;
+  padding-bottom: 1.3em;
+} 
 
-    form {
-        align-content: space-around;
-        display:flex;
-        flex-direction: column;
-        align-content:center; 
-        justify-content: center;
-        align-items: center;
-        max-width: 18em;
-        padding-top: 2.3em;
-        padding-bottom: 1.3em;
-    } 
+.inputLog {
+  outline: 0;
+  background: rgba(201, 224, 254, 1);      
+  box-sizing: border-box;
+  border: 0;
+  margin: 0 0 20px;
+  padding: 15px;
+  border-radius: 5px;
+  font-size: 13px;
+  width: 100%;
+}
 
-    input {
-        outline: 0;
-        background: rgba(201, 224, 254, 1);
-        box-sizing: border-box;
-        border: 0;
-        margin: 0 0 20px;
-        padding: 15px;
-        border-radius: 5px;
-        font-size: 13px;
-        width: 100%;
-    }
-    
-    .button {
-        display:flex;
-        padding: 0.5em;
-        margin-bottom: 2em; 
-        background: rgba(12, 80, 166, 1);
-        font-size: 11px;
-        box-sizing: border-box; 
-        width: 50%;
-        height: 3em;
-        outline: 0;
-        text-transform: uppercase;
-        cursor: pointer;
-        color: #FFFFFF;
-        border:none;
-        border-radius: 5px;
-        justify-content: center;
-        align-items: center;
-    } 
+.buttonLog {
+  display:flex;
+  padding: 0.5em;
+  margin-bottom: 2em; 
+  background: rgba(12, 80, 166, 1);
+  font-size: 11px;
+  box-sizing: border-box; 
+  width: 50%;
+  height: 3em;
+  outline: 0;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: #FFFFFF;
+  border:none;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+} 
 
-    #buttonSignIn { 
-        background:transparent;
-        border: 2px solid rgb(159, 170, 247);
-    }
+#buttonSignIn { 
+  background:transparent;
+  border: 2px solid rgb(159, 170, 247);
+}
 
-    #buttonCreateAccount{
-        background:transparent;
-        border: 2px solid rgb(159, 170, 247);
-    }
+#buttonCreateAccount {
+  background:transparent;
+  border: 2px solid rgb(159, 170, 247);
+}
 
-    #linkForgot{
-        color: #FFFFFF;
-        margin-bottom: 1em;
-        text-decoration: underline;
-        cursor:pointer;
+@media screen and (min-width:960px){
 
-    }
+  .buttonLog, #buttonSignIn, #buttonCreateAccount{
 
-    /* #buttonGoogle{
-        background-image:url(file:///".src/images/Google-logo.png");
-        width: 63%;
-        height: 4em;
-
-    } */
-
-
- }  
-
-  /*960 px*/
-@media screen and (min-width: 1000px){
-
-
+    max-width: 23em;
+  }
+}
+#linkForgot{
+  color: #FFFFFF;
+  margin-bottom: 1em;
+  text-decoration: underline;
+  cursor:pointer;
 }
 
 #logo {
-    width: 18em;
-    display: inline;
-    vertical-align: middle;
-    padding-top: 8px;
-    padding-left: 10px;
+  width: 18em;
+  display: inline;
+  vertical-align: middle;
+  padding-top: 8px;
+  padding-left: 10px;
 }
 
 #profilePic {

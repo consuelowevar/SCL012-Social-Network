@@ -19,38 +19,38 @@ const loadSignIn = () => {
   // Botón de entrar
   const sbSingIn = document.createElement('button');
   sbSingIn.innerText = 'Entrar';
-  sbSingIn.classList.add('button');
+  sbSingIn.classList.add("buttonLog");
   sbSingIn.addEventListener('click', () => {
     sendButtonLogIn();
   });
   // Botón de ya tengo cuenta
   const toggleToSignUp = document.createElement('button');
   toggleToSignUp.innerHTML = 'No tengo cuenta';
-  toggleToSignUp.classList.add('button');
-  toggleToSignUp.setAttribute('id', 'buttonCreateAccount');
+  toggleToSignUp.classList.add("buttonLog");
+  toggleToSignUp.setAttribute("id", "buttonCreateAccount");
   toggleToSignUp.addEventListener('click', () => {
     loadSignUp();
   });
   // Botón de entrar con Google
   const buttonGoogle = document.createElement('button');
   buttonGoogle.innerHTML = 'Ingresa con Google';
-  buttonGoogle.classList.add('button');
+  buttonGoogle.classList.add("buttonLog");
   buttonGoogle.addEventListener('click', () => {
     signUpGoogle();
   });
   // Link de olvidé contraseña
   const linkToForgot = document.createElement('span');
   linkToForgot.innerHTML = 'Olvidé mi contraseña';
-  linkToForgot.setAttribute('id', 'linkForgot');
+  linkToForgot.setAttribute("id", "linkForgot");
   linkToForgot.addEventListener('click', () => {
     generateForgot();
   });
   authSection.innerHTML = `
-  <img src="./images/Logo2-white.png" alt="imagen no encontrada" height="100">
-    <form> 
+  <img id="imgLogo" src="./images/Logo2-white.png" alt="imagen no encontrada" height="100">
+    <form class="formLog"> 
       <h2>Inicia Sesión</h2>
-      <input type="email" id="emailLogIn" placeholder="Email">
-      <input type="password" id="passwordLogIn" placeholder="Contraseña">
+      <input class="inputLog" type="email" id="emailLogIn" placeholder="Email">
+      <input class="inputLog" type="password" id="passwordLogIn" placeholder="Contraseña">
     </form>  
   `;
   authSection.appendChild(sbSingIn);
@@ -66,8 +66,10 @@ const generateForgot = () => {
   window.location.hash = '/forgot';
   const inputEmail = document.createElement('input');
   inputEmail.placeholder = 'Tu email';
+  inputEmail.classList.add("inputLog");
   const buttonForgot = document.createElement('button');
   buttonForgot.innerHTML = 'Recuperar contraseña';
+  buttonForgot.classList.add("buttonLog");
   buttonForgot.addEventListener('click', () => {
     forgotPassword(inputEmail.value);
   });
@@ -82,39 +84,36 @@ const generateForgot = () => {
 const loadSignUp = () => {
   window.location.hash = '/SignUp';
   const sb = document.createElement('button');
-  sb.classList.add('button');
+  sb.classList.add('buttonLog');
   sb.innerText = 'Registrarme';
   sb.addEventListener('click', () => {
     sendButton();
   });
   const toggleToSignIn = document.createElement('button');
   toggleToSignIn.innerHTML = 'Ya tengo cuenta';
-  toggleToSignIn.setAttribute('id', 'buttonSignIn');
-  toggleToSignIn.classList.add('button');
+  toggleToSignIn.setAttribute("id", "buttonSignIn");
+  toggleToSignIn.classList.add('buttonLog');
   toggleToSignIn.addEventListener('click', () => {
     loadSignIn();
   });
   const buttonGoogle = document.createElement('button');
   buttonGoogle.innerHTML = 'Ingresa con Google';
-  buttonGoogle.setAttribute('id', 'buttonGoogle');
-  buttonGoogle.classList.add('button');
+  buttonGoogle.setAttribute("id", "buttonGoogle");
+  buttonGoogle.classList.add('buttonLog');
   buttonGoogle.addEventListener('click', () => {
     signUpGoogle();
   });
 
   authSection.innerHTML = `
-    <div class="containerLog">
-      <div class="registerForm">
-      <img src="./images/Logo2-white.png" alt="imagen no encontrada" height="100">
-        <form> 
+    <img id"imgLogo" src="./images/Logo2-white.png" alt="imagen no encontrada" height="100">
+       <form class="formLog"> 
           <h2>Crea tu cuenta</h2>
-          <input type="name" id="nameLogIn" placeholder="Nombre">
-          <input type="email" id="email" placeholder="Email">
-          <input type="password" id="password" placeholder="Contraseña">
-          <input type="password" id="passwordConfirm" placeholder="Repetir contraseña">
-        </form>
-      </div>
-    </div>   
+          <input class="inputLog" type="name" id="nameLogIn" placeholder="Nombre">
+          <input class="inputLog" type="email" id="email" placeholder="Email">
+          <input class="inputLog" type="password" id="password" placeholder="Contraseña">
+          <input class="inputLog" type="password" id="passwordConfirm" placeholder="Repetir contraseña">
+       </form>
+    
   `;
   authSection.appendChild(sb);
   authSection.appendChild(buttonGoogle);
