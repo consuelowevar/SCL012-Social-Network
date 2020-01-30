@@ -105,13 +105,12 @@ const loadSignUp = () => {
   });
 
   authSection.innerHTML = `
-    <img id"imgLogo" src="./images/Logo2-white.png" alt="imagen no encontrada" height="100">
+    <img id="imgLogo" src="./images/Logo2-white.png" alt="imagen no encontrada" height="100">
        <form class="formLog"> 
           <h2>Crea tu cuenta</h2>
-          <input class="inputLog" type="name" id="nameLogIn" placeholder="Nombre">
+          <input class="inputLog" type="name" id="name" placeholder="Nombre">
           <input class="inputLog" type="email" id="email" placeholder="Email">
           <input class="inputLog" type="password" id="password" placeholder="Contraseña">
-          <input class="inputLog" type="password" id="passwordConfirm" placeholder="Repetir contraseña">
        </form>
     
   `;
@@ -262,22 +261,28 @@ const afterLogIn = (user) => {
     contentPost.innerHTML = '';
     document.getElementById('closeSessionBT').addEventListener('click', () => {
       closeSession();
+      document.body.style.backgroundColor = 'rgb(82, 115, 211)';
     });
     createPost();
     sendPost();
   } else {
     window.location.hash = '/NeedVerification';
     console.log('No está verificado');
+    const divVerificaction = document.createElement('div');
+    divVerificaction.id = 'divVerification';
+    contentPage.appendChild(divVerificaction);
     const buttonClose = document.createElement('button');
     buttonClose.innerHTML = 'Cerrar Sesión';
+    buttonClose.classList.add('buttonVerification');
     buttonClose.addEventListener('click', () => {
       closeSession();
+      document.body.style.backgroundColor = 'rgb(82, 115, 211)';
     });
-    contentPage.innerHTML = '<p>Verifica tu mail para poder entrar a la aplicación</p>';
-    contentPage.appendChild(buttonClose);
+    divVerificaction.innerHTML = '<h3 id="verificationText">Verifica tu mail para poder entrar a la aplicación. Revisa en tu buzón de entrada o en el de spam. </h3>';
+    divVerificaction.appendChild(buttonClose);
     authSection.innerHTML = '';
   }
-};
+}; 
 
 
 // <-----El Routing----->
