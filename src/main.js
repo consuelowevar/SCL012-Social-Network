@@ -19,29 +19,29 @@ const loadSignIn = () => {
   // Botón de entrar
   const sbSingIn = document.createElement('button');
   sbSingIn.innerText = 'Entrar';
-  sbSingIn.classList.add("button");
+  sbSingIn.classList.add('button');
   sbSingIn.addEventListener('click', () => {
     sendButtonLogIn();
   });
   // Botón de ya tengo cuenta
   const toggleToSignUp = document.createElement('button');
   toggleToSignUp.innerHTML = 'No tengo cuenta';
-  toggleToSignUp.classList.add("button");
-  toggleToSignUp.setAttribute("id", "buttonCreateAccount");
+  toggleToSignUp.classList.add('button');
+  toggleToSignUp.setAttribute('id', 'buttonCreateAccount');
   toggleToSignUp.addEventListener('click', () => {
     loadSignUp();
   });
   // Botón de entrar con Google
   const buttonGoogle = document.createElement('button');
   buttonGoogle.innerHTML = 'Ingresa con Google';
-  buttonGoogle.classList.add("button");
+  buttonGoogle.classList.add('button');
   buttonGoogle.addEventListener('click', () => {
     signUpGoogle();
   });
   // Link de olvidé contraseña
   const linkToForgot = document.createElement('span');
   linkToForgot.innerHTML = 'Olvidé mi contraseña';
-  linkToForgot.setAttribute("id", "linkForgot")
+  linkToForgot.setAttribute('id', 'linkForgot');
   linkToForgot.addEventListener('click', () => {
     generateForgot();
   });
@@ -89,14 +89,14 @@ const loadSignUp = () => {
   });
   const toggleToSignIn = document.createElement('button');
   toggleToSignIn.innerHTML = 'Ya tengo cuenta';
-  toggleToSignIn.setAttribute("id", "buttonSignIn");
+  toggleToSignIn.setAttribute('id', 'buttonSignIn');
   toggleToSignIn.classList.add('button');
   toggleToSignIn.addEventListener('click', () => {
     loadSignIn();
   });
   const buttonGoogle = document.createElement('button');
   buttonGoogle.innerHTML = 'Ingresa con Google';
-  buttonGoogle.setAttribute("id", "buttonGoogle");
+  buttonGoogle.setAttribute('id', 'buttonGoogle');
   buttonGoogle.classList.add('button');
   buttonGoogle.addEventListener('click', () => {
     signUpGoogle();
@@ -323,6 +323,7 @@ const createPost = () => {
     console.log(textToSave);
     savePost(textToSave);
     sendPost(textToSave);
+    input.value = '';
   });
   divCatergorieAndSent.innerHTML += `
   <div class="card">
@@ -332,27 +333,25 @@ const createPost = () => {
     </div>
     <div class="rating">
       <form class="rating-form">
-
         <label for="super-happy">
-			<input type="radio" name="rating" class="super-happy" id="super-happy" value="super-happy" />
-			<img class="svg" src="img/work.svg">
-			</label>
+			    <input type="radio" name="rating" class="super-happy" id="super-happy" value="jobs" />
+			    <img class="svg" src="img/work.svg">
+			  </label>
 
         <label for="happy">
-			<input type="radio" name="rating" class="happy" id="happy" value="happy" checked />
-			<img class="svg" src="img/passport.svg">
-			</label>
+			    <input type="radio" name="rating" class="happy" id="happy" value="visa" checked />
+			    <img class="svg" src="img/passport.svg">
+			  </label>
 
         <label for="neutral">
-			<input type="radio" name="rating" class="neutral" id="neutral" value="neutral" />
-			<img class="svg" src="img/rent.svg">
-			</label>
+			    <input type="radio" name="rating" class="neutral" id="neutral" value="rent" />
+			    <img class="svg" src="img/rent.svg">
+			  </label>
 
         <label for="sad">
-			<input type="radio" name="rating" class="sad" id="sad" value="sad" />
-			<img class="svg" src="img/more.svg">
-			</label>
-
+			    <input type="radio" name="rating" class="sad" id="sad" value="others" />
+			    <img class="svg" src="img/more.svg">
+			  </label>
       </form>
     </div>
   </div>
@@ -363,10 +362,9 @@ const createPost = () => {
 
 // Guardar Post en Firebase
 const savePost = (textPost) => {
-  const texToSave = textPost;
-  console.log(`I am going to save ${  texToSave  } to Firestore`);
+  console.log(`I am going to save ${textPost} to Firestore`);
   database.collection('post').add({
-    POST: texToSave,
+    POST: textPost,
     postTime: new Date(),
   })
     .then((docRef) => {
@@ -383,8 +381,7 @@ const savePost = (textPost) => {
 const contentMessage = document.getElementById('contentMessage');
 
 const sendPost = (textPost) => {
-  const texToSave = textPost;
-  console.log(`I am going to save ${  texToSave  } to Firestore`);
+  console.log(`I am going to save ${textPost} to Firestore`);
 
   const colletionOfPost = database.collection('post');
   const postsOrdered = colletionOfPost.orderBy('postTime', 'desc');
@@ -394,36 +391,48 @@ const sendPost = (textPost) => {
     contentMessage.innerHTML = '';
     querySnapshot.forEach((doc) => {
       const divPost = document.createElement('div');
+      divPost.classList.add('divPost');
       divPost.id = `divPost-${doc.id}`;
       contentMessage.appendChild(divPost);
       console.log(doc.id, ' => ', doc.data());
-      divPost.innerHTML
-            += `
+
+      divPost.innerHTML += `
             <p class="message" id='messagePosted'> ${doc.data().POST}</p>
             `;
-      const deleteButton = document.createElement('button');
-      deleteButton.innerHTML = 'Eliminar';
+
+      const divIcons = document.createElement('div');
+      divIcons.classList.add('divIcons');
+      divPost.appendChild(divIcons);
+
+      const deleteButton = document.createElement('img');
+      deleteButton.classList.add('iconsDivPost');
+      deleteButton.src = 'img/close.svg';
       deleteButton.addEventListener('click', () => {
         deletePost(doc.id);
       });
 
-      const editButton = document.createElement('button');
-      editButton.innerHTML = 'Editar';
-
+      const editButton = document.createElement('img');
+      editButton.src = 'img/edit.svg';
+      editButton.classList.add('iconsDivPost');
       editButton.id = 'Edit';
+
       editButton.addEventListener('click', () => {
-        document.getElementById(`divPost-${doc.id}`).innerHTML = '<textarea id=\'editTextArea\'></textarea>';
+        document.getElementById(`divPost-${doc.id}`).innerHTML = 
+        `<textarea id="editTextArea" class="editTextArea"></textarea>`;
         document.getElementById('editTextArea').value = doc.data().POST;
-        const confirmButton = document.createElement('button');
-        confirmButton.innerHTML = 'confirmar';
+        const confirmButton = document.createElement('img');
+        confirmButton.src = 'img/tick.svg';
+        confirmButton.classList.add('confirmButton');
+
         confirmButton.addEventListener('click', () => {
           editPost(doc.id, document.getElementById('editTextArea').value);
           console.log('Está saliendo de editar');
         });
+
         document.getElementById(`divPost-${doc.id}`).appendChild(confirmButton);
       });
-      divPost.appendChild(deleteButton);
-      divPost.appendChild(editButton);
+      divIcons.appendChild(deleteButton);
+      divIcons.appendChild(editButton);
     })
       .catch((error) => {
         console.log('Error getting documents: ', error);
@@ -437,7 +446,7 @@ function deletePost(id) {
     console.log('Document successfully deleted!');
   })
     .catch((error) => {
-      console.error('Error removing document: ', error);
+      console.error('Error getting documents: ', error);
     });
 }
 
