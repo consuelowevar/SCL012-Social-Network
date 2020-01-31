@@ -424,7 +424,6 @@ const sendPost = (textPost) => {
       <p class="message" id='messagePosted'>${doc.data().POST}</p>
       `;
 
-
       const likeButton = document.createElement('img'); // Botón de Me Gusta
       likeButton.src = 'img/heart.svg';
       likeButton.classList.add('likeButton');
