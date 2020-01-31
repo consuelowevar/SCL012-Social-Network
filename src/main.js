@@ -325,7 +325,7 @@ const createPost = () => {
   saveButton.id = 'saveButton';
 
   saveButton.addEventListener('click', () => {
-    const textToSave = input.value;
+    let textToSave = input.value;
     console.log(textToSave);
     savePost(textToSave);
     sendPost(textToSave);
@@ -399,7 +399,8 @@ const sendPost = (textPost) => {
     contentMessage.innerHTML = '';
     querySnapshot.forEach((doc) => {
       const divPost = document.createElement('div');
-      divPost.id = `divPost-${doc.id}`
+      divPost.classList.add('divPost');
+      divPost.id = `divPost-${doc.id}`;
       contentMessage.appendChild(divPost);
       console.log(doc.id, " => ", doc.data());
       divPost.innerHTML +=
@@ -420,33 +421,42 @@ const sendPost = (textPost) => {
       numberLikes.classList.add('numberLikes');
       numberLikes.innerHTML = doc.data().like.length;
 
+      const divIcons = document.createElement('div');
+      divIcons.classList.add('divIcons');
+      
 
-      const deleteButton = document.createElement('button');
-      deleteButton.innerHTML = 'Eliminar';
+      const deleteButton = document.createElement('img');
+      deleteButton.classList.add('iconsDivPost');
+      deleteButton.src = 'img/close.svg';
       deleteButton.addEventListener('click', () => {
         deletePost(doc.id);
-      })
+      });
 
-      const editButton = document.createElement('button');
-      editButton.innerHTML = 'Editar';
+      const editButton = document.createElement('img');
+      editButton.src = 'img/edit.svg';
+      editButton.classList.add('iconsDivPost');
+      editButton.id = 'Edit';
 
-      editButton.id = 'Edit'
       editButton.addEventListener('click', () => {
         document.getElementById(`divPost-${doc.id}`).innerHTML = `<textarea id='editTextArea'></textarea>`
         document.getElementById('editTextArea').value = doc.data().POST;
-        const confirmButton = document.createElement('button');
-        confirmButton.innerHTML = 'confirmar'
+        const confirmButton = document.createElement('img');
+        confirmButton.src = 'img/tick.svg';
+        confirmButton.classList.add('confirmButton');
+
         confirmButton.addEventListener('click', () => {
           editPost(doc.id, document.getElementById('editTextArea').value);
           console.log('Está saliendo de editar')
         });
 
         document.getElementById(`divPost-${doc.id}`).appendChild(confirmButton);
-      })
+      });
+      divPost.appendChild(divIcons);
       divPost.appendChild(numberLikes);
       divPost.appendChild(likeButton);
-      divPost.appendChild(deleteButton);
-      divPost.appendChild(editButton);
+      
+      divIcons.appendChild(deleteButton);
+      divIcons.appendChild(editButton);
     });
   })
     .catch((error) => {

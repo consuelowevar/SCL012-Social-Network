@@ -388,7 +388,7 @@ h2 {
     border-radius: 0.5em;
 }
 
-.divIcons {
+.divIcons, .divLike {
     align-self: flex-end;
 }
 
