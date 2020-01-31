@@ -326,9 +326,18 @@ const createPost = () => {
     const textToSave = input.value;
     console.log(textToSave);
     savePost(textToSave);
-    sendPost(textToSave);
+    sendPost(textToSave)
     input.value = '';
   });
+
+    //creamos boton de imagen
+    // const imageButton = document.createElement('input');
+    // imageButton.innerHTML = 'imagen';
+    // imageButton.id = 'imageButton';
+    // contentPost.appendChild(imageButton);
+  
+
+
   divCatergorieAndSent.innerHTML += `
   <div class="card">
   <div class="rating-container">
@@ -355,14 +364,24 @@ const createPost = () => {
         <label for="sad">
 			    <input type="radio" name="rating" class="sad" id="sad" value="others" />
 			    <img class="svg" src="img/more.svg">
-			  </label>
+        </label>
       </form>
+      
+      
+   
     </div>
   </div>
 </div>
   `;
   divCatergorieAndSent.appendChild(saveButton);
 };
+
+{/* <button id="fileButton" type="file" name="file" value=""></button> */}
+   // <form>
+      //  <label for="image">
+      //   <input type="file" name="file" value="" id="uploadFile">
+      //  </label> 
+      // </form>
 
 // Guardar Post en Firebase
 const savePost = (textPost) => {
