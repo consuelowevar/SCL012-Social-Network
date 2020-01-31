@@ -331,7 +331,7 @@ const createPost = () => {
     input.value = '';
   });
 
-    //creamos boton de imagen
+    // creamos boton de imagen
     // const imageButton = document.createElement('input');
     // imageButton.innerHTML = 'imagen';
     // imageButton.id = 'imageButton';
