@@ -11,6 +11,7 @@ myFunction();
 const authSection = document.getElementById('authSection'); // Sección de registro
 const contentPage = document.getElementById('contentPage'); // Sección de parte de arriba del home
 const contentPost = document.getElementById('contentPost'); // Sección de los posts
+const mainContent = document.getElementById('mainContent'); // Sección que contiene ContentPost y ContentMessage
 
 
 // <------Función que carga el Sign In------>
@@ -130,6 +131,7 @@ const sendButton = () => {
 
   singUpNewUser(email, password, name);
 };
+
 
 
 // <------Loggear usuario con Firebase------>
@@ -266,7 +268,6 @@ const afterLogIn = (user) => {
     createPost();
     sendPost();
   } else {
-    window.location.hash = '/NeedVerification';
     console.log('No está verificado');
     const divVerificaction = document.createElement('div');
     divVerificaction.id = 'divVerification';
@@ -281,6 +282,7 @@ const afterLogIn = (user) => {
     divVerificaction.innerHTML = '<h3 id="verificationText">Verifica tu mail para poder entrar a la aplicación. Revisa en tu buzón de entrada o en el de spam. </h3>';
     divVerificaction.appendChild(buttonClose);
     authSection.innerHTML = '';
+    mainContent.innerHTML = '';
   }
 }; 
 
@@ -291,7 +293,7 @@ window.addEventListener('hashchange', () => {
     loadSignIn();
   } else if (window.location.hash === '#/SignUp') {
     loadSignUp();
-  } else if (window.location.hash === '#/home' || window.location.hash === '#/NeedVerification') {
+  } else if (window.location.hash === '#/home') {
     const actualUser = firebase.auth().currentUser;
     afterLogIn(actualUser);
   } else if (window.location.hash === '#/forgot') {
@@ -307,7 +309,11 @@ const createPost = () => {
   const input = document.createElement('textarea');
   // aquí indicamos que es un input de tipo text
   input.classList.add('createMessage');
+<<<<<<< HEAD
+  input.placeholder = 'Escribe tu post aquí'
+=======
   input.placeholder = 'Escribe tu post aquí';
+>>>>>>> 13f02854e186c502b15f88bc75853d7bbfbd6ad2
   input.id = 'textToSave';
 
   // y por ultimo agreamos el componente creado al padre
@@ -385,6 +391,21 @@ const createPost = () => {
 
 // Guardar Post en Firebase
 const savePost = (textPost) => {
+<<<<<<< HEAD
+  const texToSave = textPost;
+  console.log("I am going to save " + texToSave + " to Firestore");
+  database.collection("post").add({
+    POST: texToSave,
+    like:[],
+    postTime: new Date()
+  })
+    .then(docRef => {
+      console.log("Status Saved!");
+      console.log("Document written with ID: ", docRef.id);
+    })
+    .catch(error => {
+      console.error("Error adding document: ", error);
+=======
   console.log(`I am going to save ${textPost} to Firestore`);
   database.collection('post').add({
     POST: textPost,
@@ -396,6 +417,7 @@ const savePost = (textPost) => {
     })
     .catch((error) => {
       console.error('Error adding document: ', error);
+>>>>>>> 13f02854e186c502b15f88bc75853d7bbfbd6ad2
     });
 };
 
@@ -404,16 +426,167 @@ const savePost = (textPost) => {
 const contentMessage = document.getElementById('contentMessage');
 
 const sendPost = (textPost) => {
+<<<<<<< HEAD
+  const texToSave = textPost;
+  console.log("I am going to save " + texToSave + " to Firestore");
+
+  const colletionOfPost = database.collection("post")
+  const postsOrdered = colletionOfPost.orderBy("postTime", "desc")
+=======
   console.log(`I am going to save ${textPost} to Firestore`);
 
   const colletionOfPost = database.collection('post');
   const postsOrdered = colletionOfPost.orderBy('postTime', 'desc');
+>>>>>>> 13f02854e186c502b15f88bc75853d7bbfbd6ad2
 
 
   postsOrdered.onSnapshot((querySnapshot) => {
     contentMessage.innerHTML = '';
     querySnapshot.forEach((doc) => {
       const divPost = document.createElement('div');
+<<<<<<< HEAD
+      divPost.id = `divPost-${doc.id}`
+      contentMessage.appendChild(divPost);
+      console.log(doc.id, " => ", doc.data());
+      divPost.innerHTML +=
+        `
+            <p class="message" id='messagePosted'> ${doc.data().POST}</p>
+            `
+
+      const likeButton = document.createElement('button');
+      likeButton.innerHTML = 'Like';
+      likeButton.classList.add('likeButton');
+      likeButton.addEventListener('click', () => {
+        postLike(doc.id);
+        console.log(doc.data().like.length)
+      });
+
+      const numberLikes = document.createElement('span');
+      numberLikes.id = `numberLikes-${doc.id}`;
+      numberLikes.classList.add('numberLikes');
+      numberLikes.innerHTML = doc.data().like.length;
+
+
+      const deleteButton = document.createElement('button');
+      deleteButton.innerHTML = 'Eliminar';
+      deleteButton.addEventListener('click', () => {
+        deletePost(doc.id);
+      })
+
+      const editButton = document.createElement('button');
+      editButton.innerHTML = 'Editar';
+
+      editButton.id = 'Edit'
+      editButton.addEventListener('click', () => {
+        document.getElementById(`divPost-${doc.id}`).innerHTML = `<textarea id='editTextArea'></textarea>`
+        document.getElementById('editTextArea').value = doc.data().POST;
+        const confirmButton = document.createElement('button');
+        confirmButton.innerHTML = 'confirmar'
+        confirmButton.addEventListener('click', () => {
+          editPost(doc.id, document.getElementById('editTextArea').value);
+          console.log('Está saliendo de editar')
+        });
+
+        document.getElementById(`divPost-${doc.id}`).appendChild(confirmButton);
+      })
+      divPost.appendChild(numberLikes);
+      divPost.appendChild(likeButton);
+      divPost.appendChild(deleteButton);
+      divPost.appendChild(editButton);
+    });
+  })
+    .catch((error) => {
+      console.log("Error getting documents: ", error);
+    });
+}
+
+//Eliminar Post
+function deletePost(id) {
+  database.collection("post").doc(id).delete().then(function () {
+    console.log("Document successfully deleted!");
+  }).catch(function (error) {
+    console.error("Error removing document: ", error);
+  });
+}
+
+////Editar Post
+const editPost = (id, textToSave) => {
+
+  const postRef = database.collection("post").doc(id);
+  console.log('Está editando')
+  return postRef.update({
+    POST: textToSave,
+    postTime: new Date()
+  }).then(function () {
+    console.log("Document successfully updated!");
+  }).catch(function (error) {
+    console.error("Error updating document: ", error);
+  })
+}
+
+
+// <-------------Función editar post-------------->
+//  let editPost = (id, textToSave) => {
+//   console.log('Está entrando a editar')
+
+//       database.collection('post').doc(id).set({
+//         POST: textToSave,
+//         postTime: new Date()
+//       }).then(function () {
+//         console.log('document successfully updated!!');
+//       })
+//         .catch(function () {
+//           console.log('Error update document: ', error)
+//         });
+//     }
+
+const postLike = (id) =>{
+  let user = firebase.auth().currentUser;	
+  console.log('Está entrando el postlike')
+	
+	// de la collection post traeme el documento con el ID, "id"
+	database.collection('post').doc(id).get().then((query) => {
+
+		let post = query.data();
+
+		if (post.like == null || post.like == '') {
+			post.like = [];
+			console.log("ento al like vacio");
+		}
+
+		if (post.like.includes(user.uid)) {
+
+			for (let i = 0; i < post.like.length; i++) {
+
+				if (post.like[i] === user.uid) { //verifica si ya el usuario está en el array
+
+					post.like.splice(i, 1); // sentencia para eliminar un elemento de un array
+					
+					database.collection('post').doc(id).update({ // para actualizar el array
+						like: post.like
+          }); 
+          
+				}
+			}
+		} else {
+
+			post.like.push(user.uid); //entoncesincluyeme este usuario en este array
+			database.collection('post').doc(id).update({ 
+				like: post.like
+			});
+			
+		}
+
+		// document.getElementById(`numberLikes-${doc.id}`).innerHTML = post.like.length;
+	})
+		.catch(function (error) {
+
+		});	
+
+}
+
+
+=======
       divPost.classList.add('divPost');
       divPost.id = `divPost-${doc.id}`;
       contentMessage.appendChild(divPost);
@@ -503,3 +676,4 @@ const editPost = (id, textToSave) => {
 //           console.log('Error update document: ', error)
 //         });
 //     }
+>>>>>>> 13f02854e186c502b15f88bc75853d7bbfbd6ad2
