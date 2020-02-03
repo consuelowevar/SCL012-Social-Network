@@ -108,7 +108,7 @@ const deletePost = (id) => {
 // Guardar Post en Firebase
 const savePost = (textPost, rate) => {
   console.log(`I am going to save ${textPost} to Firestore`);
-
+  const user = firebase.auth().currentUser;
   let categorySelect;
 
   for (let i = 0; i < rate.length; i++) {
