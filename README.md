@@ -31,6 +31,7 @@ Según esto se decidió acotar los temas de interés a: Empleo - Trámites de Vi
 ![encuestas](./src/img/Encuesta-1.png "encuestas") 
 ![encuestas](./src/img/Encuesta-2.png "encuestas")
 ![encuestas](./src/img/Encuesta-3.png "encuestas")
+<<<<<<< HEAD
 
 
 ## 4. Prototipo
@@ -52,10 +53,33 @@ H.U: 2: -Yo COMO usuario registrado en la red social QUIERO postear una oferta l
 
 ### 4.2 Testeo de usabilidad
 
+=======
+
+
+## 4. Prototipo
+
+Prototipo de alta 
+[Diseño UX en Figma](https://www.figma.com/proto/vtlBF9oanJkn6YRh75rKnG/RedSocial?node-id=2%3A1&scaling=scale-down)
+
+
+![prototipo](./src/img/Signin.png "prototipo") 
+![prototipo](./src/img/Home.png "prototipo") 
+
+
+
+### 4.1 Historia de Usuario
+
+H.U. 1: Yo COMO inmigrante llegando a Chile QUIERO registrarme en la red social PARA conocer más información para vivir en Chile.
+
+H.U: 2:Yo COMO usuario registrado en la red social QUIERO postear una oferta laboral PARA ayudar a las personas en la comunidad de recién llegados.
+
+### 4.2 Testeo de usuarios
+>>>>>>> 4e30601bf5d4b0690348a360646719c3bf090c44
 
 
 
 
+<<<<<<< HEAD
 ## 5. Herramientas 
 
 
@@ -65,6 +89,16 @@ El objetivo principal de aprendizaje de este proyecto es construir una
 [_responsive_](https://github.com/Laboratoria/curricula-js/tree/master/topics/css/02-responsive)
  (con más de una vista / página) en la que podamos **leer y escribir datos.**
 
+=======
+
+## 3. Objetivos de aprendizaje
+
+El objetivo principal de aprendizaje de este proyecto es construir una
+[Single-page Application (SPA)](https://es.wikipedia.org/wiki/Single-page_application)
+[_responsive_](https://github.com/Laboratoria/curricula-js/tree/master/topics/css/02-responsive)
+ (con más de una vista / página) en la que podamos **leer y escribir datos.**
+
+>>>>>>> 4e30601bf5d4b0690348a360646719c3bf090c44
 ### HTML y CSS
 
 * [ ] [HTML semántico](https://developer.mozilla.org/en-US/docs/Glossary/Semantics#Semantics_in_HTML)
