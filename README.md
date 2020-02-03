@@ -6,8 +6,8 @@
 
 * [1. Problemática](#1-problemática)
 * [2. Propuesta](#2-propuesta)
-* [3. Objetivos de aprendizaje](#3-objetivos-de-aprendizaje)
-* [4. Consideraciones generales](#4-consideraciones-generales)
+* [3. Usuario](#3-usuario)
+* [4. Prototipo](#4-prototipo)
 * [5. Criterios de aceptación mínimos del proyecto](#5-criterios-de-aceptación-mínimos-del-proyecto)
 * [6. Hacker edition](#6-hacker-edition)
 
@@ -20,13 +20,27 @@ Migrar de tu país de origen, por las razones que sean, es una situación comple
 
 ## 2. Propuesta
 
-"Viviendo en Chile" es una aplicación que entrega información necesaria a los inmigrantes de habla hispana que recién llegan a Chile, esta plataforma les permite conocer ofertas de empleo, los orienta con los trámites de visa, les entrega información respecto a arriendos y vivienda, todo en un sólo lugar.Pero sobre todo los conecta con otros personas migrantes, creando una gran comunidad colaborativa facilitando su integración a nuestra soociedad.
+"Viviendo en Chile" es una aplicación que entrega información necesaria a los inmigrantes de habla hispana que recién llegan a Chile, esta plataforma les permite conocer ofertas de empleo, los orienta con los trámites de visa, les entrega información respecto a arriendos y vivienda, todo en un sólo lugar.Pero sobre todo los conecta con otros personas migrantes, creando una gran comunidad colaborativa facilitando su integración a nuestra sociedad.
 
 
 ## 3. Usuario
 
+Se realizó encuesta para entender mejor y definir realmente las necesidades del usuario. 
+Según esto se decidió acotar los temas de interés a: Empleo - Trámites de Visa - Arriendo de Vivienda - Otros.
 
-![encuestas](./src/img/Encuesta-1.png "encuestas")
+![encuestas](./src/img/Encuesta-1.png "encuestas") 
+![encuestas](./src/img/Encuesta-2.png "encuestas")
+![encuestas](./src/img/Encuesta-3.png "encuestas")
+
+
+## 4. Prototipo
+
+Prototipo de alta 
+[Diseño UX en Figma](https://www.figma.com/proto/vtlBF9oanJkn6YRh75rKnG/RedSocial?node-id=2%3A1&scaling=scale-down)
+
+
+![prototipo](./src/img/Signin.png "prototipo") 
+![prototipo](./src/img/Home.png "prototipo") 
 
 
 
@@ -34,16 +48,12 @@ Migrar de tu país de origen, por las razones que sean, es una situación comple
 
 
 
-## 2. Resumen del proyecto
 
 En este proyecto construirás una Red Social sobre lo que decidan tú y tu equipo.
 Podría ser, por ejemplo, sobre alimentación saludable, feminismo, educación,
 salud, energías renovables, amantes de las [Empanadas](https://es.wikipedia.org/wiki/Empanada)
 o de los [Tacos de Canasta](https://es.wikipedia.org/wiki/Taco), de la
 [Feijoada](https://es.wikipedia.org/wiki/Feijoada), o de lo que sea.
-
-Tu Red Social tendrá que permitir a cualquier usuario crear una cuenta de
-acceso y loguearse con ella; crear, editar, borrar y _"likear"_ publicacciones.
 
 ## 3. Objetivos de aprendizaje
 
