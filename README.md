@@ -44,16 +44,15 @@ Prototipo de alta
 
 
 
+### 4.1 Historia de Usuario
+
+H.U. 1: Yo COMO inmigrante llegando a Chile QUIERO registrarme en la red social PARA conocer más información para vivir en Chile.
+
+H.U: 2:Yo COMO usuario registrado en la red social QUIERO postear una oferta laboral PARA ayudar a las personas en la comunidad de recién llegados.
 
 
 
 
-
-En este proyecto construirás una Red Social sobre lo que decidan tú y tu equipo.
-Podría ser, por ejemplo, sobre alimentación saludable, feminismo, educación,
-salud, energías renovables, amantes de las [Empanadas](https://es.wikipedia.org/wiki/Empanada)
-o de los [Tacos de Canasta](https://es.wikipedia.org/wiki/Taco), de la
-[Feijoada](https://es.wikipedia.org/wiki/Feijoada), o de lo que sea.
 
 ## 3. Objetivos de aprendizaje
 
