@@ -50,6 +50,8 @@ H.U. 1: Yo COMO inmigrante llegando a Chile QUIERO registrarme en la red social 
 
 H.U: 2:Yo COMO usuario registrado en la red social QUIERO postear una oferta laboral PARA ayudar a las personas en la comunidad de recién llegados.
 
+### 4.2 Testeo de usuarios
+
 
 
 
