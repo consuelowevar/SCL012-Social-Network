@@ -429,8 +429,9 @@ const sendPost = (textPost) => {
       editButton.addEventListener('click', () => {
         document.getElementById(`divPost-${doc.id}`).innerHTML = '<textarea id=\'editTextArea\'></textarea>';
         document.getElementById('editTextArea').value = doc.data().POST;
-        const confirmButton = document.createElement('button');
-        confirmButton.innerHTML = 'confirmar'
+        const confirmButton = document.createElement('img');
+        confirmButton.src = 'img/tick.svg';
+        confirmButton.classList.add('confirmButton');
         confirmButton.addEventListener('click', () => {
           editPost(doc.id, document.getElementById('editTextArea').value);
           console.log('Está saliendo de editar')
