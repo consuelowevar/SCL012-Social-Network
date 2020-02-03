@@ -1,30 +1,38 @@
-# Creando una Red Social
+# Viviendo en Chile
+
+![logo](./src/img/Logo2.png "logo")
 
 ## Índice
 
-* [1. Preámbulo](#1-preámbulo)
-* [2. Resumen del proyecto](#2-resumen-del-proyecto)
+* [1. Problemática](#1-problemática)
+* [2. Propuesta](#2-propuesta)
 * [3. Objetivos de aprendizaje](#3-objetivos-de-aprendizaje)
 * [4. Consideraciones generales](#4-consideraciones-generales)
 * [5. Criterios de aceptación mínimos del proyecto](#5-criterios-de-aceptación-mínimos-del-proyecto)
 * [6. Hacker edition](#6-hacker-edition)
-* [7. Entrega](#7-entrega)
-* [8. Pistas, tips y lecturas complementarias](#8-pistas-tips-y-lecturas-complementarias)
 
 ***
 
-## 1. Preámbulo
+## 1. Problemática
 
-Instagram, Snapchat, Twitter, Facebook, Twitch, Linkedin, etc. Las redes
-sociales han invadido nuestras vidas. Las amamos u odiamos, y muchos no podemos
-vivir sin ellas.
+Migrar de tu país de origen, por las razones que sean, es una situación compleja, y llegar a un país nuevo se hace difícil cuando no tienes una red de apoyo y tampoco sabes dónde informarte sobre trabajo, vivienda, visas y otros temas de manera centralizada y rápida, en muchos casos esto puede ser engorroso incluso una perdida de tiempo y dificultar tu establecimiento en Chile.
 
-Hay redes sociales de todo tipo y para todo tipo de intereses. Por ejemplo,
-en una ronda de financiamiento con inversionistas, se presentó una red social
-para químicos en la que los usuarios podían publicar artículos sobre sus
-investigaciones, comentar en los artículos de sus colegas, y filtrar artículos
-de acuerdo a determinadas etiquetas o su popularidad, lo más reciente, o lo
-más comentado.
+
+## 2. Propuesta
+
+"Viviendo en Chile" es una aplicación que entrega información necesaria a los inmigrantes de habla hispana que recién llegan a Chile, esta plataforma les permite conocer ofertas de empleo, los orienta con los trámites de visa, les entrega información respecto a arriendos y vivienda, todo en un sólo lugar.Pero sobre todo los conecta con otros personas migrantes, creando una gran comunidad colaborativa facilitando su integración a nuestra soociedad.
+
+
+## 3. Usuario
+
+
+![encuestas](./src/img/Encuesta-1.png "encuestas")
+
+
+
+
+
+
 
 ## 2. Resumen del proyecto
 

@@ -180,31 +180,31 @@ const afterLogIn = (user) => {
         <img src="img/Logo2-long.png" id="logo"> 
         <ul class="list-icon">
           <li id="top-bar">
-            <a class="icons-a" href="#">
+            <a class="icons-a" href="#/home">
               <img class="icon icon--2x icon-white" src="img/home.svg">
               <span class="textIcon">Inicio</span>
             </a>
           </li>
       <li id="top-bar">
-        <a class="icons-a" href="#">
+        <a class="icons-a" href="#/jobs">
           <img class="icon icon--2x icon-white" src="img/work.svg">
           <span class="textIcon">Trabajo</span>
         </a>
       </li>
       <li id="top-bar">
-        <a class="icons-a" href="#">
+        <a class="icons-a" href="#/visa">
           <img class="icon icon--2x icon-white" src="img/passport.svg">
           <span class="textIcon">Visa</span>
         </a>
       </li>
       <li id="top-bar">
-        <a class="icons-a" href="#">
+        <a class="icons-a" href="#/rent">
           <img class="icon icon--2x icon-white" src="img/rent.svg">
           <span class="textIcon">Arriendos</span>
         </a>
       </li>
       <li id="top-bar">
-        <a class="icons-a" href="#">
+        <a class="icons-a" href="#/other">
           <img class="icon icon--2x icon-white" src="img/more.svg">
           <span class="textIcon">Otros</span>
         </a>
@@ -225,31 +225,31 @@ const afterLogIn = (user) => {
       <nav class="navigation navigation--inline">
         <ul id="classOfList">
           <li>
-            <a class="icons-a" href="#">
+            <a class="icons-a" href="#/home">
               <img class="icon icon--2x icon-white" src="img/home.svg">
               <span class="textIcon">Inicio</span>
             </a>
           </li>
          <li>
-            <a class="icons-a" href="#">
+            <a class="icons-a" href="#/jobs">
               <img class="icon icon--2x icon-white" src="img/work.svg">
               <span class="textIcon">Trabajo</span>
             </a>
           </li>
           <li>
-           <a class="icons-a" href="#">
+           <a class="icons-a" href="#/visa">
               <img class="icon icon--2x icon-white" src="img/passport.svg">
               <span class="textIcon">Visa</span>
            </a>
           </li>
           <li>
-            <a class="icons-a" href="#">
+            <a class="icons-a" href="#/rent">
               <img class="icon icon--2x icon-white" src="img/rent.svg">
               <span class="textIcon">Arriendos</span>
             </a>
           </li>
           <li>
-            <a class="icons-a" href="#">
+            <a class="icons-a" href="#/other">
               <img class="icon icon--2x icon-white" src="img/more.svg">
               <span class="textIcon">Otros</span>
             </a>
@@ -285,8 +285,14 @@ const afterLogIn = (user) => {
   }
 };
 
+// <------ Los posts categorizados por category ----->
+const postsJobs = database.collectionGroup('post').where('categories.jobs', '==', true).orderBy('postTime', 'desc');
+const postsOther = database.collectionGroup('post').where('categories.other', '==', true).orderBy('postTime', 'desc');
+const postsVisa = database.collectionGroup('post').where('categories.visa', '==', true).orderBy('postTime', 'desc');
+const postsRent = database.collectionGroup('post').where('categories.rent', '==', true).orderBy('postTime', 'desc');
 
-// <-----El Routing----->
+
+// <--------El Routing-------->
 window.addEventListener('hashchange', () => {
   if (window.location.hash === '#/SignIn') {
     loadSignIn();
@@ -295,18 +301,21 @@ window.addEventListener('hashchange', () => {
   } else if (window.location.hash === '#/home') {
     const actualUser = firebase.auth().currentUser;
     afterLogIn(actualUser);
-    postCategory();
   } else if (window.location.hash === '#/forgot') {
     generateForgot();
-  }else if (window.location.hash === '#/jobs') {
-    postCategory();
+  } else if (window.location.hash === '#/jobs') {
+    generatePosts(postsJobs);
+  } else if (window.location.hash === '#/other') {
+    generatePosts(postsOther);
+  } else if (window.location.hash === '#/visa') {
+    generatePosts(postsVisa);
+  } else if (window.location.hash === '#/rent') {
+    generatePosts(postsRent);
   }
 });
 
 
-
-// <-------------Función Categoria de Post-------------->
-
+// <-------------Función que crea el toda la sección de Crear Post-------------->
 
 const createPost = () => {
   // aquí agregamos el componente de tipo input
@@ -329,11 +338,10 @@ const createPost = () => {
   saveButton.id = 'saveButton';
 
   saveButton.addEventListener('click', () => {
-    let textToSave = input.value;
+    const textToSave = input.value;
+    const rate = document.getElementsByName('rating');
     console.log(textToSave);
-    savePost(textToSave);
-    sendPost(textToSave);
-    postCategory();
+    savePost(textToSave, rate);
     input.value = '';
   });
 
@@ -384,78 +392,11 @@ const createPost = () => {
 };
 
 
-// Guardar Post en Firebase
-const savePost = (textPost) => {
-  const texToSave = textPost;
-  console.log(`I am going to save ${  texToSave  } to Firestore`);
-  console.log("Prueba Radio Button");
-  
-  // - De aca
-  const rate = document.getElementsByName('rating');
-  
-  // - Imprime la cantidad de botones tipo radio
-  console.log(rate.length);
-  
-  let categorySelect;
-  
-  for(let i=0; i<rate.length; i++){
-      if(rate[i].checked){
-        console.log("Es el elemento" + i);
-        categorySelect = i;
-      }
-  }
-
-  //- Se setean en falso todos los valores
-  let check_jobs = false;
-  let check_visa = false;
-  let check_arriendos = false;
-  let check_otros = false;
-
-  // - Se verifica cuál categoría está activa
-  if(categorySelect==0){
-    check_jobs = true;
-  }
-  if(categorySelect==1){
-    check_visa = true;
-  }
-  if(categorySelect==2){
-    check_arriendos = true;
-  }
-  if(categorySelect==3){
-    check_otros = true;
-  }
-
-  database.collection('post').add({
-    POST: texToSave,
-    // category: categorySelect,
-    like: [],
-    postTime: new Date(),
-    categories: {
-      jobs: check_jobs,
-      visa: check_visa,
-      arriendos: check_arriendos,
-      otros: check_otros,
-    }
-  })
-    .then(docRef => {
-      console.log("Status Saved!");
-      console.log("Document written with ID: ", docRef.id);
-    })
-    .catch(error => {
-      console.error("Error adding document: ", error);
-    });
-};
-
-
-// Traer Post
 const contentMessage = document.getElementById('contentMessage');
 
-const sendPost = (textPost) => {
-  console.log(`I am going to save ${textPost} to Firestore`);
-  const colletionOfPost = database.collection('post');
-  const postsOrdered = colletionOfPost.orderBy('postTime', 'desc');
-
-  postsOrdered.onSnapshot((querySnapshot) => {
+// <------- Esta función genera todo el HTML y DOM de los posts posteados ------>
+const generatePosts = (newFilter) => {
+  newFilter.onSnapshot((querySnapshot) => {
     contentMessage.innerHTML = '';
     querySnapshot.forEach((doc) => {
       const divPost = document.createElement('div'); // El div de todo el post
@@ -463,8 +404,8 @@ const sendPost = (textPost) => {
       divPost.id = `divPost-${doc.id}`;
       contentMessage.appendChild(divPost);
       divPost.innerHTML += `
-      <p class="message" id='messagePosted'>${doc.data().POST}</p>
-      `;
+    <p class="message" id='messagePosted'>${doc.data().POST}</p>
+    `;
 
       const likeButton = document.createElement('img'); // Botón de Me Gusta
       likeButton.src = 'img/heart.svg';
@@ -484,7 +425,7 @@ const sendPost = (textPost) => {
       divIcons.classList.add('divIcons');
 
       const divLikes = document.createElement('div'); // Div de los íconos de Me Gusta y Contador
-      divLikes.classList.add('divIcons');
+      divLikes.classList.add('divLike');
 
 
       const deleteButton = document.createElement('img'); // Botón de borrar
@@ -492,25 +433,42 @@ const sendPost = (textPost) => {
       deleteButton.src = 'img/close.svg';
       deleteButton.addEventListener('click', () => {
         deletePost(doc.id);
-      })
+      });
 
       const editButton = document.createElement('img'); // Botón de editar
       editButton.src = 'img/edit.svg';
       editButton.classList.add('iconsDivPost');
       editButton.id = 'Edit';
 
-      editButton.id = 'Edit'
+      editButton.id = 'Edit';
       editButton.addEventListener('click', () => {
         document.getElementById(`divPost-${doc.id}`).innerHTML = '<textarea id=\'editTextArea\'></textarea>';
         document.getElementById('editTextArea').value = doc.data().POST;
-        const confirmButton = document.createElement('button');
-        confirmButton.innerHTML = 'confirmar'
+        const confirmButton = document.createElement('img');
+        confirmButton.src = 'img/tick.svg';
+        confirmButton.classList.add('confirmButton');
         confirmButton.addEventListener('click', () => {
           editPost(doc.id, document.getElementById('editTextArea').value);
-          console.log('Está saliendo de editar')
+          console.log('Está saliendo de editar');
         });
         document.getElementById(`divPost-${doc.id}`).appendChild(confirmButton);
       });
+
+      // Esto imprime la catogoría del post en el div
+      const categoryPost = document.createElement('span');
+      categoryPost.classList.add('categoryPost');
+      categoryPost.innerHTML = 'Categoría: Sin Categoría';
+      if (doc.data().categories.jobs) {
+        categoryPost.innerHTML = 'Categoría: Trabajos';
+      } else if (doc.data().categories.visa) {
+        categoryPost.innerHTML = 'Categoría: Visa';
+      } else if (doc.data().categories.rent) {
+        categoryPost.innerHTML = 'Categoría: Arriendos';
+      } else if (doc.data().categories.other) {
+        categoryPost.innerHTML = 'Categoría: Otros';
+      }
+
+      divPost.appendChild(categoryPost);
 
       divPost.appendChild(divLikes);
       divLikes.appendChild(numberLikes);
@@ -526,108 +484,13 @@ const sendPost = (textPost) => {
     });
 };
 
+// <-------Esta función imprime los posts cuando uno se loguea-------->
+const sendPost = (textPost) => {
+  console.log(`I am going to save ${textPost} to Firestore`);
+  const colletionOfPost = database.collection('post');
+  const postsOrdered = colletionOfPost.orderBy('postTime', 'desc');
 
-// Eliminar Post
-function deletePost(id) {
-  database.collection('post').doc(id).delete().then(() => {
-    console.log('Document successfully deleted!');
-  })
-    .catch((error) => {
-      console.error('Error removing document: ', error);
-    });
-}
-
-// //Editar Post
-const editPost = (id, textToSave) => {
-
-  const postRef = database.collection("post").doc(id);
-  console.log('Está editando')
-  return postRef.update({
-    POST: textToSave,
-    postTime: new Date()
-  }).then(function () {
-    console.log("Document successfully updated!");
-  }).catch(function (error) {
-    console.error("Error updating document: ", error);
-  })
-}
-
-
-// <-------------Función editar post-------------->
-//  let editPost = (id, textToSave) => {
-//   console.log('Está entrando a editar')
-
-//       database.collection('post').doc(id).set({
-//         POST: textToSave,
-//         postTime: new Date()
-//       }).then(function () {
-//         console.log('document successfully updated!!');
-//       })
-//         .catch(function () {
-//           console.log('Error update document: ', error)
-//         });
-//     }
-
-
-// <-------------Función like post-------------->
-const postLike = (id) => {
-  const user = firebase.auth().currentUser;
-  console.log('Está entrando el postlike');
-
-  // de la collection post traeme el documento con el ID, "id"
-  database.collection('post').doc(id).get().then((query) => {
-    const post = query.data();
-
-    if (post.like == null || post.like == '') {
-      post.like = [];
-      console.log('ento al like vacio');
-    }
-
-    if (post.like.includes(user.uid)) {
-      for (let i = 0; i < post.like.length; i++) {
-        if (post.like[i] === user.uid) { // verifica si ya el usuario está en el array
-          post.like.splice(i, 1); // sentencia para eliminar un elemento de un array
-
-          database.collection('post').doc(id).update({ // para actualizar el array
-            like: post.like,
-          });
-        }
-      }
-    } else {
-      post.like.push(user.uid); // entoncesincluyeme este usuario en este array
-      database.collection('post').doc(id).update({
-        like: post.like,
-      });
-    }
-
-    // document.getElementById(`numberLikes-${doc.id}`).innerHTML = post.like.length;
-  })
-    .catch((error) => {
-      console.log(error);
-    });
+  if (window.location.hash === '#/home') {
+    generatePosts(postsOrdered);
+  }
 };
-
-
-// <-----Logica Post------>
-
-const contentCategory = document.getElementById('contentCategory');
-
-const postCategory = () => {
-  window.location.hash = '/jobs';
-  console.log("Entro a la funcion de postCategory");
-
-  database.collection('post')
-  .where('categories.jobs', '==', true)
-  .get()
-  .then(() => {
-    console.log('trae esto');
-      // ...
-  });
-
-  const divCategory = document.createElement('div');
-  divCategory.innerHTML += `
-      <p class="message" id='messageCategory'>HOLA</p>
-      `;
-   contentCategory.appendChild(divCategory);
-  
-}
