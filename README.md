@@ -46,17 +46,19 @@ Prototipo de alta
 
 ### 4.1 Historia de Usuario
 
-H.U. 1: Yo COMO inmigrante llegando a Chile QUIERO registrarme en la red social PARA conocer más información para vivir en Chile.
+H.U. 1: -Yo COMO inmigrante llegando a Chile QUIERO registrarme en la red social PARA conocer más información para vivir en Chile.
 
-H.U: 2:Yo COMO usuario registrado en la red social QUIERO postear una oferta laboral PARA ayudar a las personas en la comunidad de recién llegados.
+H.U: 2: -Yo COMO usuario registrado en la red social QUIERO postear una oferta laboral PARA ayudar a las personas en la comunidad de recién llegados.
 
-### 4.2 Testeo de usuarios
-
-
+### 4.2 Testeo de usabilidad
 
 
 
-## 3. Objetivos de aprendizaje
+
+
+## 5. Herramientas 
+
+
 
 El objetivo principal de aprendizaje de este proyecto es construir una
 [Single-page Application (SPA)](https://es.wikipedia.org/wiki/Single-page_application)
