@@ -338,7 +338,11 @@ const createPost = () => {
   saveButton.id = 'saveButton';
 
   saveButton.addEventListener('click', () => {
+<<<<<<< HEAD
     const textToSave = input.value;
+=======
+    let textToSave = input.value;
+>>>>>>> Cambios en la función SavePost
     const rate = document.getElementsByName('rating');
     console.log(textToSave);
     savePost(textToSave, rate);
