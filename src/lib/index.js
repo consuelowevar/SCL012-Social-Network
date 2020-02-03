@@ -44,9 +44,9 @@ const signInUser = (email, password) => {
 
 const singUpNewUser = (email, password, name) => {
   firebase.auth().createUserWithEmailAndPassword(email, password)
-    .then((result) => result.user.updateProfile({
-        displayName: name,
-      }))
+    .then(result => result.user.updateProfile({
+      displayName: name,
+    }))
     .then(() => {
       emailVerification();
     })
@@ -108,17 +108,12 @@ const deletePost = (id) => {
 // Guardar Post en Firebase
 const savePost = (textPost, rate) => {
   console.log(`I am going to save ${textPost} to Firestore`);
-  console.log('Prueba Radio Button');
-  
-
-  // - Imprime la cantidad de botones tipo radio
-  console.log(rate.length);
 
   let categorySelect;
 
   for (let i = 0; i < rate.length; i++) {
     if (rate[i].checked) {
-      console.log('Es el elemento ' + i);
+      console.log(`Es el elemento ${  i}`);
       categorySelect = i;
     }
   }
@@ -145,7 +140,6 @@ const savePost = (textPost, rate) => {
 
   database.collection('post').add({
     POST: textPost,
-    // category: categorySelect,
     like: [],
     postTime: new Date(),
     categories: {
