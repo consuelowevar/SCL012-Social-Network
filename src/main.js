@@ -322,7 +322,7 @@ const createPost = () => {
   const input = document.createElement('textarea');
   // aquí indicamos que es un input de tipo text
   input.classList.add('createMessage');
-  input.placeholder = 'Escribe tu post aquí';
+  input.placeholder = 'Escribe tu post aquí'
   input.id = 'textToSave';
 
   // y por ultimo agreamos el componente creado al padre
@@ -344,6 +344,15 @@ const createPost = () => {
     savePost(textToSave, rate);
     input.value = '';
   });
+
+    // creamos boton de imagen
+    // const imageButton = document.createElement('input');
+    // imageButton.innerHTML = 'imagen';
+    // imageButton.id = 'imageButton';
+    // contentPost.appendChild(imageButton);
+  
+
+
   divCatergorieAndSent.innerHTML += `
   <div class="card">
   <div class="rating-container">
@@ -370,8 +379,11 @@ const createPost = () => {
         <label for="sad">
 			    <input type="radio" name="rating" class="sad" id="sad" value="others" />
 			    <img class="svg" src="img/more.svg">
-			  </label>
+        </label>
       </form>
+      
+      
+   
     </div>
   </div>
 </div>
@@ -394,7 +406,6 @@ const generatePosts = (newFilter) => {
       divPost.innerHTML += `
     <p class="message" id='messagePosted'>${doc.data().POST}</p>
     `;
-
 
       const likeButton = document.createElement('img'); // Botón de Me Gusta
       likeButton.src = 'img/heart.svg';
