@@ -8,7 +8,7 @@
 * [2. Propuesta](#2-propuesta)
 * [3. Usuario](#3-usuario)
 * [4. Prototipo](#4-prototipo)
-* [5. Criterios de aceptación mínimos del proyecto](#5-criterios-de-aceptación-mínimos-del-proyecto)
+* [5. Historias de Usuario](#5-historias-de-usuario)
 * [6. Hacker edition](#6-hacker-edition)
 
 ***
@@ -28,90 +28,43 @@ Migrar de tu país de origen, por las razones que sean, es una situación comple
 Se realizó encuesta para entender mejor y definir realmente las necesidades del usuario. 
 Según esto se decidió acotar los temas de interés a: Empleo - Trámites de Visa - Arriendo de Vivienda - Otros.
 
-![encuestas](./src/img/Encuesta-1.png "encuestas") 
+![encuestas](./src/img/Encuesta-4.png "encuestas")
 ![encuestas](./src/img/Encuesta-2.png "encuestas")
 ![encuestas](./src/img/Encuesta-3.png "encuestas")
-<<<<<<< HEAD
-
-
-## 4. Prototipo
-
-Prototipo de alta 
-[Diseño UX en Figma](https://www.figma.com/proto/vtlBF9oanJkn6YRh75rKnG/RedSocial?node-id=2%3A1&scaling=scale-down)
-
-
-![prototipo](./src/img/Signin.png "prototipo") 
-![prototipo](./src/img/Home.png "prototipo") 
-
-
-
-### 4.1 Historia de Usuario
-
-H.U. 1: -Yo COMO inmigrante llegando a Chile QUIERO registrarme en la red social PARA conocer más información para vivir en Chile.
-
-H.U: 2: -Yo COMO usuario registrado en la red social QUIERO postear una oferta laboral PARA ayudar a las personas en la comunidad de recién llegados.
-
-### 4.2 Testeo de usabilidad
-
-=======
-
+![encuestas](./src/img/Encuesta-1.png "encuestas")
 
 ## 4. Prototipo
 
 Prototipo de alta 
 [Diseño UX en Figma](https://www.figma.com/proto/vtlBF9oanJkn6YRh75rKnG/RedSocial?node-id=2%3A1&scaling=scale-down)
 
+Aplicacion Responsive
 
-![prototipo](./src/img/Signin.png "prototipo") 
-![prototipo](./src/img/Home.png "prototipo") 
+Mobile version
+![responsive](./src/img/mobile-version.png "responsive")
 
-
-
-### 4.1 Historia de Usuario
-
-H.U. 1: Yo COMO inmigrante llegando a Chile QUIERO registrarme en la red social PARA conocer más información para vivir en Chile.
-
-H.U: 2:Yo COMO usuario registrado en la red social QUIERO postear una oferta laboral PARA ayudar a las personas en la comunidad de recién llegados.
-
-### 4.2 Testeo de usuarios
->>>>>>> 4e30601bf5d4b0690348a360646719c3bf090c44
+Desktop version
+![responsive](./src/img/Desktop-version.png "responsive")
 
 
+## 5 Historias de Usuarios
 
+### Historia de usuario 1
+  
+    YO COMO:  inmigrante llegando a Chile
+    QUIERO: registrarme en la red social
+    PARA: conocer más información para vivir en Chile.
 
-<<<<<<< HEAD
-## 5. Herramientas 
+### Historia de usuario 2
 
+    YO COMO:  usuario registrado en la red social 
+    QUIERO: postear una oferta laboral 
+    PARA: ayudar a las personas en la comunidad de recién llegados.
 
+### 5.1 Testeo de usabilidad
 
-El objetivo principal de aprendizaje de este proyecto es construir una
-[Single-page Application (SPA)](https://es.wikipedia.org/wiki/Single-page_application)
-[_responsive_](https://github.com/Laboratoria/curricula-js/tree/master/topics/css/02-responsive)
- (con más de una vista / página) en la que podamos **leer y escribir datos.**
-
-=======
-
-## 3. Objetivos de aprendizaje
-
-El objetivo principal de aprendizaje de este proyecto es construir una
-[Single-page Application (SPA)](https://es.wikipedia.org/wiki/Single-page_application)
-[_responsive_](https://github.com/Laboratoria/curricula-js/tree/master/topics/css/02-responsive)
- (con más de una vista / página) en la que podamos **leer y escribir datos.**
-
->>>>>>> 4e30601bf5d4b0690348a360646719c3bf090c44
-### HTML y CSS
-
-* [ ] [HTML semántico](https://developer.mozilla.org/en-US/docs/Glossary/Semantics#Semantics_in_HTML)
-* [ ] [CSS `flexbox`](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
-* [ ] Construir tu aplicación respetando el diseño realizado (maquetación).
+Video testeo usuario 1(https://www.loom.com/share/d142bdfba2d74a73999a6fd35434981a)
 
 
 
 
-* [Modulos: Export](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Sentencias/export)
-* [Modulos: Import](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Sentencias/import)
-* [Diseño web, responsive design y la importancia del mobile first - Media Click](https://www.mediaclick.es/blog/diseno-web-responsive-design-y-la-importancia-del-mobile-first/)
-* [Mobile First: el enfoque actual del diseño web móvil - 1and1](https://www.1and1.es/digitalguide/paginas-web/diseno-web/mobile-first-la-nueva-tendencia-del-diseno-web/)
-* [Mobile First - desarrolloweb.com](https://desarrolloweb.com/articulos/mobile-first-responsive.html)
-* [Mobile First - ZURB](https://zurb.com/word/mobile-first)
-* [Mobile First Is NOT Mobile Only - Nielsen Norman Group](https://www.nngroup.com/articles/mobile-first-not-mobile-only/)
