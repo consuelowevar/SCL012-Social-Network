@@ -9,7 +9,6 @@
 * [3. Usuario](#3-usuario)
 * [4. Prototipo](#4-prototipo)
 * [5. Historias de Usuario](#5-historias-de-usuario)
-* [6. Hacker edition](#6-hacker-edition)
 
 ***
 
