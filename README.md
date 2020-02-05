@@ -37,7 +37,7 @@ Según esto se decidió acotar los temas de interés a: Empleo - Trámites de Vi
 Prototipo de alta 
 [Diseño UX en Figma](https://www.figma.com/proto/vtlBF9oanJkn6YRh75rKnG/RedSocial?node-id=2%3A1&scaling=scale-down)
 
-Aplicacion Responsive
+Aplicación Responsive
 
 Mobile version
 ![responsive](./src/img/mobile-version.png "responsive")
